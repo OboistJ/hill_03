@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "test04",
+    "name": "언덕위의찬송",
     "slug": "test04",
-    "version": "1.0.0",
+    "version": "2.0.3",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -21,10 +21,19 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.shinjuan.test04"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-font"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "a80ddd40-4ac6-4357-8a76-12c5199210de"
+      }
     }
   }
 }
