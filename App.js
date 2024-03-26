@@ -15,6 +15,8 @@ import Slider from '@react-native-community/slider';
 import * as Font from 'expo-font';
 import  {  ReactNativeZoomableView  }  from  '@openspacelabs/react-native-zoomable-view' ;
 import { TabView,TabBar,} from 'react-native-tab-view';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+
 
 async function loadFonts() {
   await Font.loadAsync({
@@ -629,18 +631,6 @@ const renderScene = ({ route }) => {
     default:
       return null;
   }
-};
-// TabView 컴포넌트와 상태 설정
-const MyTabView = () => {
-  const [index, setIndex] = useState(0);
-  const [routes] = useState([
-    { key: 'images', title: '악보' },
-    { key: 'lyrics', title: '가사' },
-  ]);
-
-  
-
-  
 };
 
 
