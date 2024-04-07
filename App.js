@@ -15,8 +15,6 @@ import Slider from '@react-native-community/slider';
 import * as Font from 'expo-font';
 import  {  ReactNativeZoomableView  }  from  '@openspacelabs/react-native-zoomable-view' ;
 import { TabView,TabBar,} from 'react-native-tab-view';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-
 
 async function loadFonts() {
   await Font.loadAsync({
@@ -501,7 +499,7 @@ const handleSliderComplete = async (value) => {
 
 
   // Images 탭의 콘텐츠를 렌더링하는 컴포넌트
-const ImagesTab = () => (
+const ImagesTab =React.memo( () => (
   <View >
     <ScrollView
       contentContainerStyle={{ flexGrow: 1 }}
@@ -580,7 +578,7 @@ const ImagesTab = () => (
       </View>
       </ScrollView>
   </View>
-);
+));
 
 const copyToClipboard = () => {
   // 이미지 이름과 가사를 하나의 문자열로 결합
@@ -590,7 +588,7 @@ const copyToClipboard = () => {
 };
 
  // Lyrics 탭의 콘텐츠를 렌더링하는 컴포넌트
- const LyricsTab = () => (
+ const LyricsTab =React.memo( () => (
   <View style={styles.container}>
     <ScrollView showsHorizontalScrollIndicator={false} horizontal={false}>
       <Text style={[styles.text, { fontSize: fontSize + 5, fontWeight: 'bold' }]}>
@@ -615,7 +613,7 @@ const copyToClipboard = () => {
       </TouchableOpacity>
     </View>
   </View>
-);
+));
 
 
 
@@ -632,6 +630,7 @@ const renderScene = ({ route }) => {
       return null;
   }
 };
+
 
 
   
@@ -764,6 +763,8 @@ const onPlaybackStatusUpdate = (status) => {
   }
   setIsLoading(false);
   setIsPlaying(status.isPlaying);
+
+  
   setPlaybackPosition(status.positionMillis);
   setPlaybackDuration(status.durationMillis || 0);
 };
@@ -787,6 +788,7 @@ const handleRestart = async () => {
     await sound.playAsync();
   }
 };
+
 
 const handleSliderValueChange = async (value) => {
   if (!sound || isLoading) return;
@@ -1042,18 +1044,7 @@ const renderScene = ({ route }) => {
       return null;
   }
 };
-// TabView 컴포넌트와 상태 설정
-const MyTabView = () => {
-  const [index, setIndex] = useState(0);
-  const [routes] = useState([
-    { key: 'images', title: '악보' },
-    { key: 'lyrics', title: '가사' },
-  ]);
 
-  
-
-  
-};
 
 
 
