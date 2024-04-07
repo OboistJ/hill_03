@@ -10,11 +10,10 @@ import { IMAGE_DATA } from './ImageData';
 import { styles } from './Styles';
 import { imageSources } from './ImageSources';
 import { soundSources } from './SoundSources';
-import { lyricsSources } from './lyricsSources';
 import Slider from '@react-native-community/slider';
 import * as Font from 'expo-font';
 import  {  ReactNativeZoomableView  }  from  '@openspacelabs/react-native-zoomable-view' ;
-import { TabView,TabBar,} from 'react-native-tab-view';
+
 
 async function loadFonts() {
   await Font.loadAsync({
@@ -450,7 +449,7 @@ const ImageDetailScreen = ({ route,navigation }) => {
 
   const images = imageSources[imageName];
   const soundSource = soundSources[imageName];
-  const lyrics = lyricsSources[imageName]; // 가사 데이터
+  //const lyrics = lyricsSources[imageName]; // 가사 데이터
 
   // 이미지 이름으로부터 인덱스 찾기
   const imageNames = Object.keys(imageSources); // 모든 이미지 이름을 배열로 변환
