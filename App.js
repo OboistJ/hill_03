@@ -49,7 +49,7 @@ const HelpModal = ({ visible, onClose }) => (
                 언덕위의 찬송 앱을  {'\n'}이용해 주셔서 감사합니다.
                 {'\n\n'}
               </Text>
-              언덕 위의 찬송 앱은 수록곡 257곡의 악보와 일부 음원, 그리고 간단한 기능을 제공합니다.
+              언덕 위의 찬송 앱은 수록곡 281곡의 악보와 일부 음원, 그리고 간단한 기능을 제공합니다.
               {'\n\n'}
               ⦁ 찬송 검색 (장, 제목, 가사로 검색할 수 있습니다.) {'\n\n'} 
               ⦁ 메뉴-더욱 소중히 불러보고 싶은 찬송(즐겨찾기) {'\n\n'} 
@@ -58,7 +58,7 @@ const HelpModal = ({ visible, onClose }) => (
               ⦁ 찬송 재생 (처음부터 재생, 재생/정지, 반복 재생) {'\n\n'} 
               ⦁ 메뉴-진토리 홈페이지 접속  {'\n\n'} 
               <Text style={styles.smallText}>
-                {'<'}추가 문의 및 요청{'>'}{'\n'}sshkimssh@naver.com{'\n'}juani00@naver.com
+                {'<'}곡 추가 문의 및 요청{'>'}{'\n'}sshkimssh@naver.com{'\n'}juani00@naver.com
               </Text>
             </Text>
             <TouchableOpacity onPress={onClose} style={styles.closeButton}>
@@ -696,10 +696,10 @@ return (
      
     <ReactNativeZoomableView   style={{ flexGrow: 1}}// ZoomableView 추가
     
-    maxZoom={images.length > 1 ? 4 : 2} // 최대 줌 배율
-    minZoom={images.length > 1 ? 2.2 : 1}
+    maxZoom={images.length > 1 ? 6 : 3} // 최대 줌 배율
+    minZoom={images.length > 1 ? 2 : 1}
     zoomStep={4} // 줌 단계
-    initialZoom={images.length > 1 ? 2.2: 1} // 초기 줌 배율
+    initialZoom={images.length > 1 ? 2: 1} // 초기 줌 배율
     bindToBorders={true}
     initialOffsetY={images.length > 1 ? setY: 1}
         
@@ -980,10 +980,10 @@ const goToNext = () => {
          
         <ReactNativeZoomableView // ZoomableView 추가
         
-        maxZoom={images.length > 1 ? 4 : 2} // 최대 줌 배율
-        minZoom={images.length > 1 ? 2.2 : 1}
+        maxZoom={images.length > 1 ? 6 : 3} // 최대 줌 배율
+        minZoom={images.length > 1 ? 2 : 1}
         zoomStep={4} // 줌 단계
-        initialZoom={images.length > 1 ? 2.2: 1} // 초기 줌 배율
+        initialZoom={images.length > 1 ? 2: 1} // 초기 줌 배율
         bindToBorders={true}
         initialOffsetY={images.length > 1 ? setY: 1}
           >
