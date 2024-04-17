@@ -589,8 +589,6 @@ const onPlaybackStatusUpdate = (status) => {
   }
   setIsLoading(false);
   setIsPlaying(status.isPlaying);
-
-  
   setPlaybackPosition(status.positionMillis);
   setPlaybackDuration(status.durationMillis || 0);
 };
@@ -718,9 +716,8 @@ return (
         style={{ width: 200, height: 40 }}
         minimumValue={0}
         maximumValue={1}
-        value={sliderValue} // 상태를 바인딩
-        onValueChange={value => setSliderValue(value)}
-        onSlidingComplete={handleSliderValueChange} // 사용자가 드래그를 완료했을 때 호출
+        value={playbackPosition / playbackDuration}
+        onValueChange={handleSliderValueChange}
         minimumTrackTintColor="#50594f"
         maximumTrackTintColor="#CCCCCC"
         thumbTintColor="#88ab85"
@@ -999,8 +996,8 @@ const goToNext = () => {
             style={{ width: 200, height: 40 }}
             minimumValue={0}
             maximumValue={1}
-            value={sliderValue} // 상태를 바인딩
-            onValueChange={value => setSliderValue(value)}
+            value={playbackPosition / playbackDuration}
+            onValueChange={handleSliderValueChange}
             onSlidingComplete={handleSliderValueChange} // 사용자가 드래그를 완료했을 때 호출
             minimumTrackTintColor="#50594f"
             maximumTrackTintColor="#CCCCCC"
