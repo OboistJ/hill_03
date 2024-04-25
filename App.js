@@ -753,83 +753,83 @@ const renderScene = ({ route }) => {
       return (
 
         <View >
-    <ScrollView
-      contentContainerStyle={{ flexGrow: 1 }}
-      //maximumZoomScale={2}
-      //minimumZoomScale={1}
-      horizontal={false}
-      showsHorizontalScrollIndicator={false}
-      showsVerticalScrollIndicator={false}
-      scrollEnabled={false}
-    >
-    
-   <View style={{ flexGrow: 1}}>
-
-    
-       
-      <ReactNativeZoomableView   style={{ flexGrow: 1}}// ZoomableView 추가
-      
-      maxZoom={images.length > 1 ? 4 : 2} // 최대 줌 배율
-      minZoom={images.length > 1 ? 2.2 : 1}
-      zoomStep={4} // 줌 단계
-      initialZoom={images.length > 1 ? 2.2: 1} // 초기 줌 배율
-      bindToBorders={true}
-      initialOffsetY={images.length > 1 ? setY: 1}
-          
-          
-          
+        <ScrollView
+          contentContainerStyle={{ flexGrow: 1 }}
+          //maximumZoomScale={2}
+          //minimumZoomScale={1}
+          horizontal={false}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+          scrollEnabled={false}
         >
-      {images.map((image, index) => (
-        <Image key={index} source={image} style={images.length > 1 ? styles.image2 : styles.image} />
-      ))}
-      </ReactNativeZoomableView>
-      
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' ,top:-5}}>
-     
-  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',marginLeft:30 ,bottom:5}}>
-  <Text>{formatTime(playbackPosition)} / {formatTime(playbackDuration)}</Text>
-  
-<Slider
-  style={{ width: 200, height: 40 }}
-  minimumValue={0}
-  maximumValue={1}
-  value={playbackPosition / playbackDuration}
-  onSlidingComplete={handleSliderComplete} // 사용자가 드래그를 완료했을 때 호출
-  minimumTrackTintColor="#50594f"
-  maximumTrackTintColor="#CCCCCC"
-  thumbTintColor="#88ab85"
-/>
         
-  {/* 다시 재생 토글 버튼 */}
-</View>
-<View style={{ flexDirection: 'row', justifyContent: 'center',left: 8, bottom:10}}>
-<TouchableOpacity onPress={handleRestart} style={{ marginRight: 40 ,marginLeft:40}}>
-            <Image source={require('./images/backward.png')} style={{ width: 25, height: 25}} />
-          </TouchableOpacity>
-  {/* 재생/일시정지 토글 버튼 */}
-            <TouchableOpacity onPress={handleTogglePlayPause} style={{ marginRight: 40,marginLeft:40}}>
-            <Image
-              source={isPlaying ? require('./images/pause.png') : require('./images/play.png')}
-              style={{ width: 25, height: 25}}
-            />
-          </TouchableOpacity>
-
-  {/* 반복 재생 토글 버튼 */}
-  <TouchableOpacity onPress={toggleLooping} style={{ marginLeft:40,marginRight: 40 }}>
-  <Image
-    source={isLooping ? require('./images/looping.png') : require('./images/nonloop.png')} // 이미지 경로는 실제 프로젝트 구조에 맞게 조정
-    style={{ width: 25, height: 25 }}// 이미지 크기 조정
-  /> 
-   </TouchableOpacity>
-   
-</View>
-
-      </View>
+       <View style={{ flexGrow: 1}}>
+    
+        
+           
+          <ReactNativeZoomableView   style={{ flexGrow: 1}}// ZoomableView 추가
+          
+          maxZoom={images.length > 1 ? 4 : 2} // 최대 줌 배율
+          minZoom={images.length > 1 ? 2.2 : 1}
+          zoomStep={4} // 줌 단계
+          initialZoom={images.length > 1 ? 2.2: 1} // 초기 줌 배율
+          bindToBorders={true}
+          initialOffsetY={images.length > 1 ? setY: 1}
+              
+              
+              
+            >
+          {images.map((image, index) => (
+            <Image key={index} source={image} style={images.length > 1 ? styles.image2 : styles.image} />
+          ))}
+          </ReactNativeZoomableView>
+          
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' ,top:-5}}>
+         
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',marginLeft:30 ,bottom:5}}>
+      <Text>{formatTime(playbackPosition)} / {formatTime(playbackDuration)}</Text>
       
-     
+    <Slider
+      style={{ width: 200, height: 40 }}
+      minimumValue={0}
+      maximumValue={1}
+      value={playbackPosition / playbackDuration}
+      onSlidingComplete={handleSliderComplete} // 사용자가 드래그를 완료했을 때 호출
+      minimumTrackTintColor="#50594f"
+      maximumTrackTintColor="#CCCCCC"
+      thumbTintColor="#88ab85"
+    />
+            
+      {/* 다시 재생 토글 버튼 */}
+    </View>
+    <View style={{ flexDirection: 'row', justifyContent: 'center',left: 8, bottom:10}}>
+    <TouchableOpacity onPress={handleRestart} style={{ marginRight: 40 ,marginLeft:40}}>
+                <Image source={require('./images/backward.png')} style={{ width: 25, height: 25}} />
+              </TouchableOpacity>
+      {/* 재생/일시정지 토글 버튼 */}
+                <TouchableOpacity onPress={handleTogglePlayPause} style={{ marginRight: 40,marginLeft:40}}>
+                <Image
+                  source={isPlaying ? require('./images/pause.png') : require('./images/play.png')}
+                  style={{ width: 25, height: 25}}
+                />
+              </TouchableOpacity>
+    
+      {/* 반복 재생 토글 버튼 */}
+      <TouchableOpacity onPress={toggleLooping} style={{ marginLeft:40,marginRight: 40 }}>
+      <Image
+        source={isLooping ? require('./images/looping.png') : require('./images/nonloop.png')} // 이미지 경로는 실제 프로젝트 구조에 맞게 조정
+        style={{ width: 25, height: 25 }}// 이미지 크기 조정
+      /> 
+       </TouchableOpacity>
+       
+    </View>
+    
+          </View>
+          
+         
+          </View>
+          </ScrollView>
       </View>
-      </ScrollView>
-  </View>
 
       );
     case 'lyrics':
@@ -1080,8 +1080,8 @@ useFocusEffect(
       }
       setIsLoading(false);
       setIsPlaying(status.isPlaying);
-      // setPlaybackPosition(status.positionMillis);
-      // setPlaybackDuration(status.durationMillis || 0);
+      setPlaybackPosition(status.positionMillis);
+      setPlaybackDuration(status.durationMillis || 0);
     };
     
     const handleTogglePlayPause = async () => {
