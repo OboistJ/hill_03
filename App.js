@@ -103,10 +103,12 @@ const OpeningScreen = ({ navigation }) => {
 
 const HomeScreen = (route) => {
 
-  // const scrollToItem = (index) => {
-  //   // FlatList의 scrollToIndex 메서드를 사용하여 특정 인덱스로 스크롤
-  //   flatListRef.current.scrollToIndex({animated: true, index: index});
-  // };
+  const ITEM_HEIGHT = 50; // 가정한 항목의 높이
+
+  const scrollToItem = (index) => {
+    // FlatList의 scrollToIndex 메서드를 사용하여 특정 인덱스로 스크롤
+    flatListRef.current.scrollToIndex({animated: true, index: index});
+  };
   
 
 
@@ -388,7 +390,14 @@ useEffect(() => {
   />
 </TouchableOpacity>
 
-
+<View style={styles.indexContainer}>
+      {/* 인덱스 버튼들 */}
+      {[1, 50, 100, 150, 200, 250].map((item, index) => (
+        <TouchableOpacity key={index} onPress={() => scrollToItem(item-1)} style={styles.indexButton}>
+          <Text>{item}</Text>
+        </TouchableOpacity>
+      ))}
+    </View>
     
 <FlatList
       ref={flatListRef}
@@ -406,7 +415,11 @@ useEffect(() => {
     />
   )}
   keyExtractor={(item) => item.id.toString()}
-  ItemSeparatorComponent={() => <View style={styles.separator} />} // 여기에 구분선 컴포넌트 추가
+  getItemLayout={(data, index) => ({
+    length: ITEM_HEIGHT,
+    offset: ITEM_HEIGHT * index,
+    index,
+  })}
   showsVerticalScrollIndicator={false} // 스크롤바 숨기기
 />
 
@@ -466,12 +479,7 @@ const ImageDetailScreen = ({ route,navigation }) => {
 
   
 
-  // 초기 탭 인덱스와 라우트 설정
-  const [tabIndex, setTabIndex] = useState(route.params?.tabIndex || 0);
-  const [routes] = useState([
-    { key: 'images', title: '악보' },
-    { key: 'lyrics', title: '가사' },
-  ]);
+  
 
 
   const [sound, setSound] = useState(null);
@@ -497,125 +505,6 @@ const handleSliderComplete = async (value) => {
 };
 
 
-
-  // Images 탭의 콘텐츠를 렌더링하는 컴포넌트
-const ImagesTab =React.memo( () => (
-  <View >
-    <ScrollView
-      contentContainerStyle={{ flexGrow: 1 }}
-      //maximumZoomScale={2}
-      //minimumZoomScale={1}
-      horizontal={false}
-      showsHorizontalScrollIndicator={false}
-      showsVerticalScrollIndicator={false}
-      scrollEnabled={false}
-    >
-    
-   <View style={{ flexGrow: 1}}>
-
-    
-       
-      <ReactNativeZoomableView   style={{ flexGrow: 1}}// ZoomableView 추가
-      
-      maxZoom={images.length > 1 ? 6 : 3} // 최대 줌 배율
-      minZoom={images.length > 1 ? 2.2 : 1}
-      zoomStep={4} // 줌 단계
-      initialZoom={images.length > 1 ? 2.2: 1} // 초기 줌 배율
-      bindToBorders={true}
-      initialOffsetY={images.length > 1 ? setY: 1}
-          
-          
-          
-        >
-      {images.map((image, index) => (
-        <Image key={index} source={image} style={images.length > 1 ? styles.image2 : styles.image} />
-      ))}
-      </ReactNativeZoomableView>
-      
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' ,top:10}}>
-     
-
-{/* 다시 재생 토글 버튼 */}
-<View style={{ flexDirection: 'row', justifyContent: 'center',left: 8, bottom:10}}>
-<TouchableOpacity onPress={handleRestart} style={{ marginRight: 40 ,marginLeft:40}}>
-            <Image source={require('./images/backward.png')} style={{ width: 25, height: 25}} />
-          </TouchableOpacity>
-  {/* 재생/일시정지 토글 버튼 */}
-            <TouchableOpacity onPress={handleTogglePlayPause} style={{ marginRight: 40,marginLeft:40}}>
-            <Image
-              source={isPlaying ? require('./images/pause.png') : require('./images/play.png')}
-              style={{ width: 25, height: 25}}
-            />
-          </TouchableOpacity>
-
-  {/* 반복 재생 토글 버튼 */}
-  <TouchableOpacity onPress={toggleLooping} style={{ marginLeft:40,marginRight: 40 }}>
-  <Image
-    source={isLooping ? require('./images/looping.png') : require('./images/nonloop.png')} // 이미지 경로는 실제 프로젝트 구조에 맞게 조정
-    style={{ width: 25, height: 25 }}// 이미지 크기 조정
-  /> 
-   </TouchableOpacity>
-   
-</View>
-
-      </View>
-      
-     
-      </View>
-      </ScrollView>
-  </View>
-));
-
-const copyToClipboard = () => {
-  // 이미지 이름과 가사를 하나의 문자열로 결합
-  const lyricsText = `${imageName}\n\n${lyrics.join('\n')}`;
-  Clipboard.setString(lyricsText);
-  Alert.alert("복사됨", "가사가 복사 되었습니다."); // 사용자에게 알림
-};
-
- // Lyrics 탭의 콘텐츠를 렌더링하는 컴포넌트
- const LyricsTab =React.memo( () => (
-  <View style={styles.container}>
-    <ScrollView showsHorizontalScrollIndicator={false} horizontal={false}>
-      <Text style={[styles.text, { fontSize: fontSize + 5, fontWeight: 'bold' }]}>
-      {'\n'}{imageName}{'\n'}
-      </Text>
-      {lyrics.map((line, index) => (
-        <Text key={index} style={[styles.text, { fontSize }]}>
-          {line}
-          {'\n'}
-        </Text>
-      ))}
-    </ScrollView>
-    <View style={styles.buttonContainer}>
-      <TouchableOpacity onPress={increaseFontSize} style={styles.button}>
-        <Text style={styles.buttonText}>확대</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={decreaseFontSize} style={styles.button}>
-        <Text style={styles.buttonText}>축소</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={copyToClipboard} style={styles.button}>
-        <Text style={styles.buttonText}>복사</Text>
-      </TouchableOpacity>
-    </View>
-  </View>
-));
-
-
-
-
-
-// renderScene을 직접 구현하여 SceneMap 대신 사용
-const renderScene = ({ route }) => {
-  switch (route.key) {
-    case 'images':
-      return <ImagesTab />;
-    case 'lyrics':
-      return <LyricsTab />;
-    default:
-      return null;
-  }
-};
 
 
 
@@ -751,8 +640,8 @@ const onPlaybackStatusUpdate = (status) => {
   setIsPlaying(status.isPlaying);
 
   
-  // setPlaybackPosition(status.positionMillis);
-  // setPlaybackDuration(status.durationMillis || 0);
+  setPlaybackPosition(status.positionMillis);
+  setPlaybackDuration(status.durationMillis || 0);
 };
 
 const handleTogglePlayPause = async () => {
@@ -838,6 +727,145 @@ useEffect(() => {
   };
 }, [soundSource]); // 의존성 배열에 soundSource 추가
 
+// 초기 탭 인덱스와 라우트 설정
+const [tabIndex, setTabIndex] = useState(route.params?.tabIndex || 0);
+const [routes] = useState([
+  { key: 'images', title: '악보' },
+  { key: 'lyrics', title: '가사' },
+]);
+
+
+
+const copyToClipboard = () => {
+  // 이미지 이름과 가사를 하나의 문자열로 결합
+  const lyricsText = `${imageName}\n\n${lyrics.join('\n')}`;
+  Clipboard.setString(lyricsText);
+  Alert.alert("복사됨", "가사가 복사 되었습니다."); // 사용자에게 알림
+};
+
+
+
+
+// renderScene을 직접 구현하여 SceneMap 대신 사용
+const renderScene = ({ route }) => {
+  switch (route.key) {
+    case 'images':
+      return (
+
+        <View >
+    <ScrollView
+      contentContainerStyle={{ flexGrow: 1 }}
+      //maximumZoomScale={2}
+      //minimumZoomScale={1}
+      horizontal={false}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+      scrollEnabled={false}
+    >
+    
+   <View style={{ flexGrow: 1}}>
+
+    
+       
+      <ReactNativeZoomableView   style={{ flexGrow: 1}}// ZoomableView 추가
+      
+      maxZoom={images.length > 1 ? 4 : 2} // 최대 줌 배율
+      minZoom={images.length > 1 ? 2.2 : 1}
+      zoomStep={4} // 줌 단계
+      initialZoom={images.length > 1 ? 2.2: 1} // 초기 줌 배율
+      bindToBorders={true}
+      initialOffsetY={images.length > 1 ? setY: 1}
+          
+          
+          
+        >
+      {images.map((image, index) => (
+        <Image key={index} source={image} style={images.length > 1 ? styles.image2 : styles.image} />
+      ))}
+      </ReactNativeZoomableView>
+      
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' ,top:-5}}>
+     
+  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',marginLeft:30 ,bottom:5}}>
+  <Text>{formatTime(playbackPosition)} / {formatTime(playbackDuration)}</Text>
+  
+<Slider
+  style={{ width: 200, height: 40 }}
+  minimumValue={0}
+  maximumValue={1}
+  value={playbackPosition / playbackDuration}
+  onSlidingComplete={handleSliderComplete} // 사용자가 드래그를 완료했을 때 호출
+  minimumTrackTintColor="#50594f"
+  maximumTrackTintColor="#CCCCCC"
+  thumbTintColor="#88ab85"
+/>
+        
+  {/* 다시 재생 토글 버튼 */}
+</View>
+<View style={{ flexDirection: 'row', justifyContent: 'center',left: 8, bottom:10}}>
+<TouchableOpacity onPress={handleRestart} style={{ marginRight: 40 ,marginLeft:40}}>
+            <Image source={require('./images/backward.png')} style={{ width: 25, height: 25}} />
+          </TouchableOpacity>
+  {/* 재생/일시정지 토글 버튼 */}
+            <TouchableOpacity onPress={handleTogglePlayPause} style={{ marginRight: 40,marginLeft:40}}>
+            <Image
+              source={isPlaying ? require('./images/pause.png') : require('./images/play.png')}
+              style={{ width: 25, height: 25}}
+            />
+          </TouchableOpacity>
+
+  {/* 반복 재생 토글 버튼 */}
+  <TouchableOpacity onPress={toggleLooping} style={{ marginLeft:40,marginRight: 40 }}>
+  <Image
+    source={isLooping ? require('./images/looping.png') : require('./images/nonloop.png')} // 이미지 경로는 실제 프로젝트 구조에 맞게 조정
+    style={{ width: 25, height: 25 }}// 이미지 크기 조정
+  /> 
+   </TouchableOpacity>
+   
+</View>
+
+      </View>
+      
+     
+      </View>
+      </ScrollView>
+  </View>
+
+      );
+    case 'lyrics':
+      return (
+
+<View style={styles.container}>
+    <ScrollView showsHorizontalScrollIndicator={false} horizontal={false}>
+      <Text style={[styles.text, { fontSize: fontSize + 5, fontWeight: 'bold' }]}>
+      {'\n'}{imageName}{'\n'}
+      </Text>
+      {lyrics.map((line, index) => (
+        <Text key={index} style={[styles.text, { fontSize }]}>
+          {line}
+          {'\n'}
+        </Text>
+      ))}
+    </ScrollView>
+    <View style={styles.buttonContainer}>
+      <TouchableOpacity onPress={increaseFontSize} style={styles.button}>
+        <Text style={styles.buttonText}>확대</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={decreaseFontSize} style={styles.button}>
+        <Text style={styles.buttonText}>축소</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={copyToClipboard} style={styles.button}>
+        <Text style={styles.buttonText}>복사</Text>
+      </TouchableOpacity>
+    </View>
+  </View>
+
+      );
+    default:
+      return null;
+  }
+};
+
 
 const renderTabBar = props => (
   <TabBar
@@ -873,13 +901,7 @@ const ImageDetails_New = ({ route,navigation}) => {
   const [soundSource, setSoundSource] = useState(null);
   const lyrics = lyricsSources[imageName]; // 가사 데이터
 
-   // 초기 탭 인덱스와 라우트 설정
-   const [tabIndex, setTabIndex] = useState(route.params?.tabIndex || 0);
-   
-   const [routes] = useState([
-     { key: 'images', title: '악보' },
-     { key: 'lyrics', title: '가사' },
-   ]);
+ 
 
    const [fontSize, setFontSize] = useState(14.5); // 기본 폰트 크기를 20으로 설정
 
@@ -905,119 +927,8 @@ const ImageDetails_New = ({ route,navigation}) => {
   const currentIndex = favoriteSongs.findIndex(song => song.name === imageName);
   const [index, setIndex] = useState(currentIndex);
 
-  // Images 탭의 콘텐츠를 렌더링하는 컴포넌트
-const ImagesTab = () => (
-  <ScrollView
-        contentContainerStyle={{ flexGrow: 1 }}
-        //maximumZoomScale={2}
-        //minimumZoomScale={1}
-        horizontal={false}
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-      >
-      <View style={{ flex: 1}}>
-  
-      
-         
-        <ReactNativeZoomableView // ZoomableView 추가
-        
-        maxZoom={images.length > 1 ? 6 : 3} // 최대 줌 배율
-        minZoom={images.length > 1 ? 2.2 : 1}
-        zoomStep={4} // 줌 단계
-        initialZoom={images.length > 1 ? 2.2: 1} // 초기 줌 배율
-        bindToBorders={true}
-        initialOffsetY={images.length > 1 ? setY: 1}
-          >
-        {images.map((image, index) => (
-          <Image key={index} source={image} style={images.length > 1 ? styles.image2 : styles.image} />
-        ))}
-        </ReactNativeZoomableView>
-        
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' ,top:10}}>
-       
-     
-{/* 다시 재생 토글 버튼 */}
-<View style={{ flexDirection: 'row', justifyContent: 'center',left: 8, bottom:10}}>
-<TouchableOpacity onPress={handleRestart} style={{ marginRight: 40 ,marginLeft:40}}>
-            <Image source={require('./images/backward.png')} style={{ width: 25, height: 25}} />
-          </TouchableOpacity>
-  {/* 재생/일시정지 토글 버튼 */}
-            <TouchableOpacity onPress={handleTogglePlayPause} style={{ marginRight: 40,marginLeft:40}}>
-            <Image
-              source={isPlaying ? require('./images/pause.png') : require('./images/play.png')}
-              style={{ width: 25, height: 25}}
-            />
-          </TouchableOpacity>
+ 
 
-  {/* 반복 재생 토글 버튼 */}
-  <TouchableOpacity onPress={toggleLooping} style={{ marginLeft:40,marginRight: 40 }}>
-  <Image
-    source={isLooping ? require('./images/looping.png') : require('./images/nonloop.png')} // 이미지 경로는 실제 프로젝트 구조에 맞게 조정
-    style={{ width: 25, height: 25 }}// 이미지 크기 조정
-  /> 
-   </TouchableOpacity>
-     
-  </View>
-  
-        </View>
-        
-       
-        </View>
-        </ScrollView>
-);
-
-const copyToClipboard = () => {
-  // 이미지 이름과 가사를 하나의 문자열로 결합
-  const lyricsText = `${imageName}\n\n${lyrics.join('\n')}`;
-  Clipboard.setString(lyricsText);
-  Alert.alert("복사됨", "가사가 복사 되었습니다."); // 사용자에게 알림
-};
-
-
- // Lyrics 탭의 콘텐츠를 렌더링하는 컴포넌트
- const LyricsTab = () => (
-  <View style={styles.container}>
-    <ScrollView showsHorizontalScrollIndicator={false} horizontal={false}>
-    <Text style={[styles.text, { fontSize: fontSize + 5, fontWeight: 'bold' }]}>
-      {'\n'}{imageName}{'\n'}
-      </Text>
-      {lyrics.map((line, index) => (
-        <Text key={index} style={[styles.text, { fontSize }]}>
-          {line}
-          {'\n'}
-        </Text>
-      ))}
-    </ScrollView>
-    <View style={styles.buttonContainer}>
-      <TouchableOpacity onPress={increaseFontSize} style={styles.button}>
-        <Text style={styles.buttonText}>확대</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={decreaseFontSize} style={styles.button}>
-        <Text style={styles.buttonText}>축소</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={copyToClipboard} style={styles.button}>
-        <Text style={styles.buttonText}>복사</Text>
-      </TouchableOpacity>
-    </View>
-  </View>
-);
-
-
-
-
-
-
-// renderScene을 직접 구현하여 SceneMap 대신 사용
-const renderScene = ({ route }) => {
-  switch (route.key) {
-    case 'images':
-      return <ImagesTab />;
-    case 'lyrics':
-      return <LyricsTab />;
-    default:
-      return null;
-  }
-};
 
 
 
@@ -1215,6 +1126,135 @@ useFocusEffect(
     );
 
     const images = imageSources[imageName];
+
+ 
+    
+    
+      // 초기 탭 인덱스와 라우트 설정
+   const [tabIndex, setTabIndex] = useState(route.params?.tabIndex || 0);
+   
+   const [routes] = useState([
+     { key: 'images', title: '악보' },
+     { key: 'lyrics', title: '가사' },
+   ]);
+    
+   const copyToClipboard = () => {
+    // 이미지 이름과 가사를 하나의 문자열로 결합
+    const lyricsText = `${imageName}\n\n${lyrics.join('\n')}`;
+    Clipboard.setString(lyricsText);
+    Alert.alert("복사됨", "가사가 복사 되었습니다."); // 사용자에게 알림
+  };
+
+    // renderScene을 직접 구현하여 SceneMap 대신 사용
+    const renderScene = ({ route }) => {
+      switch (route.key) {
+        case 'images':
+          return (
+
+            <ScrollView
+            contentContainerStyle={{ flexGrow: 1 }}
+            //maximumZoomScale={2}
+            //minimumZoomScale={1}
+            horizontal={false}
+            showsHorizontalScrollIndicator={false}
+            showsVerticalScrollIndicator={false}
+          >
+          <View style={{ flex: 1}}>
+      
+          
+             
+            <ReactNativeZoomableView // ZoomableView 추가
+            
+            maxZoom={images.length > 1 ? 4 : 2} // 최대 줌 배율
+            minZoom={images.length > 1 ? 2.2 : 1}
+            zoomStep={4} // 줌 단계
+            initialZoom={images.length > 1 ? 2.2: 1} // 초기 줌 배율
+            bindToBorders={true}
+            initialOffsetY={images.length > 1 ? setY: 1}
+              >
+            {images.map((image, index) => (
+              <Image key={index} source={image} style={images.length > 1 ? styles.image2 : styles.image} />
+            ))}
+            </ReactNativeZoomableView>
+            
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' ,top:-5}}>
+           
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',marginLeft:30,bottom:5 }}>
+        <Text>{formatTime(playbackPosition)} / {formatTime(playbackDuration)}</Text>
+        <Slider
+              style={{ width: 200, height: 40, }}
+              minimumValue={0}
+              maximumValue={1}
+              value={playbackPosition / playbackDuration}
+              onValueChange={handleSliderValueChange}
+              minimumTrackTintColor="#50594f"
+              maximumTrackTintColor="#CCCCCC" 
+              thumbTintColor="#88ab85" 
+            />
+         {/* 다시 재생 토글 버튼 */}
+    </View>
+    <View style={{ flexDirection: 'row', justifyContent: 'center',left: 8, bottom:10}}>
+    <TouchableOpacity onPress={handleRestart} style={{ marginRight: 40 ,marginLeft:40}}>
+                <Image source={require('./images/backward.png')} style={{ width: 25, height: 25}} />
+              </TouchableOpacity>
+      {/* 재생/일시정지 토글 버튼 */}
+                <TouchableOpacity onPress={handleTogglePlayPause} style={{ marginRight: 40,marginLeft:40}}>
+                <Image
+                  source={isPlaying ? require('./images/pause.png') : require('./images/play.png')}
+                  style={{ width: 25, height: 25}}
+                />
+              </TouchableOpacity>
+    
+      {/* 반복 재생 토글 버튼 */}
+      <TouchableOpacity onPress={toggleLooping} style={{ marginLeft:40,marginRight: 40 }}>
+      <Image
+        source={isLooping ? require('./images/looping.png') : require('./images/nonloop.png')} // 이미지 경로는 실제 프로젝트 구조에 맞게 조정
+        style={{ width: 25, height: 25 }}// 이미지 크기 조정
+      /> 
+       </TouchableOpacity>
+         
+      </View>
+      
+            </View>
+            
+           
+            </View>
+            </ScrollView>
+          );
+        case 'lyrics':
+          return (
+
+<View style={styles.container}>
+    <ScrollView showsHorizontalScrollIndicator={false} horizontal={false}>
+    <Text style={[styles.text, { fontSize: fontSize + 5, fontWeight: 'bold' }]}>
+      {'\n'}{imageName}{'\n'}
+      </Text>
+      {lyrics.map((line, index) => (
+        <Text key={index} style={[styles.text, { fontSize }]}>
+          {line}
+          {'\n'}
+        </Text>
+      ))}
+    </ScrollView>
+    <View style={styles.buttonContainer}>
+      <TouchableOpacity onPress={increaseFontSize} style={styles.button}>
+        <Text style={styles.buttonText}>확대</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={decreaseFontSize} style={styles.button}>
+        <Text style={styles.buttonText}>축소</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={copyToClipboard} style={styles.button}>
+        <Text style={styles.buttonText}>복사</Text>
+      </TouchableOpacity>
+    </View>
+  </View>
+
+          );
+        default:
+          return null;
+      }
+    };
+    
 
     const renderTabBar = props => (
       <TabBar
