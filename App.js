@@ -769,7 +769,7 @@ const renderScene = ({ route }) => {
            
           <ReactNativeZoomableView   style={{ flexGrow: 1}}// ZoomableView 추가
           
-          maxZoom={images.length > 1 ? 4 : 2} // 최대 줌 배율
+          maxZoom={images.length > 1 ? 6 : 3} // 최대 줌 배율
           minZoom={images.length > 1 ? 2.2 : 1}
           zoomStep={4} // 줌 단계
           initialZoom={images.length > 1 ? 2.2: 1} // 초기 줌 배율
@@ -1165,7 +1165,7 @@ useFocusEffect(
              
             <ReactNativeZoomableView // ZoomableView 추가
             
-            maxZoom={images.length > 1 ? 4 : 2} // 최대 줌 배율
+            maxZoom={images.length > 1 ? 6 : 3} // 최대 줌 배율
             minZoom={images.length > 1 ? 2.2 : 1}
             zoomStep={4} // 줌 단계
             initialZoom={images.length > 1 ? 2.2: 1} // 초기 줌 배율
