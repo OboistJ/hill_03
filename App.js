@@ -92,7 +92,7 @@ const OpeningScreen = ({ navigation }) => {
 
   return (
     <View style={{ flex: 1 }}>
-    <Animated.View style={{ ...styles.containerop, opacity: fadeAnim }}>
+    <Animated.View style={{ opacity: fadeAnim }}>
       <Image source={require('./OpeningImage.png')} style={[styles.imageOpen, { resizeMode: 'cover' }]} />
     </Animated.View>
     </View>
@@ -456,7 +456,7 @@ useEffect(() => {
 };
 
 const { width, height } = Dimensions.get('window');
-setY = height * 0.45
+setY = height * 0.4
 
 const ImageDetailScreen = ({ route,navigation }) => {
   const { imageName } = route.params;
@@ -774,7 +774,7 @@ const renderScene = ({ route }) => {
           zoomStep={4} // 줌 단계
           initialZoom={images.length > 1 ? 1: 1} // 초기 줌 배율
           bindToBorders={true}
-          contentHeight={images.length > 1 ? height*2.5 : undefined}
+          contentHeight={images.length > 1 ? height*2.4 : undefined}
           initialOffsetY={images.length > 1 ? setY: 1}
               
               
@@ -784,7 +784,7 @@ const renderScene = ({ route }) => {
           ))}
           </ReactNativeZoomableView>
           
-          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' ,top:images.length > 1 ? -680 : -5}}>
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' ,top:images.length > 1 ? -height*0.845 : -5}}>
          
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',marginLeft:25 ,bottom:5}}>
       <Text>{formatTime(playbackPosition)} / {formatTime(playbackDuration)}</Text>
@@ -836,7 +836,10 @@ const renderScene = ({ route }) => {
       return (
 
 <View style={styles.container}>
-    <ScrollView showsHorizontalScrollIndicator={false} horizontal={false}>
+    <ScrollView 
+          showsHorizontalScrollIndicator={false} 
+          orizontal={false}
+          showsVerticalScrollIndicator={false}>
       <Text style={[styles.text, { fontSize: fontSize + 5, fontWeight: 'bold' }]}>
       {'\n'}{imageName}{'\n'}
       </Text>
@@ -1158,29 +1161,33 @@ useFocusEffect(
             horizontal={false}
             showsHorizontalScrollIndicator={false}
             showsVerticalScrollIndicator={false}
+            scrollEnabled={false}
           >
           <View style={{ flex: 1}}>
       
           
              
-            <ReactNativeZoomableView // ZoomableView 추가
-            
-            maxZoom={images.length > 1 ? 6 : 3} // 최대 줌 배율
-            minZoom={images.length > 1 ? 1.8 : 1}
-            zoomStep={4} // 줌 단계
-            initialZoom={images.length > 1 ? 1.8: 1} // 초기 줌 배율
-            bindToBorders={true}
-            initialOffsetY={images.length > 1 ? setY: 1}
-              >
-            {images.map((image, index) => (
-              <Image key={index} source={image} style={images.length > 1 ? styles.image2 : styles.image} />
-            ))}
-            </ReactNativeZoomableView>
-            
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' ,top:-5}}>
-           
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',marginLeft:25 ,bottom:5}}>
-        <Text>{formatTime(playbackPosition)} / {formatTime(playbackDuration)}</Text>
+          <ReactNativeZoomableView   style={{ flexGrow: 1}}// ZoomableView 추가
+          
+          maxZoom={images.length > 1 ? 3 : 3} // 최대 줌 배율
+          minZoom={images.length > 1 ? 1 : 1}
+          zoomStep={4} // 줌 단계
+          initialZoom={images.length > 1 ? 1: 1} // 초기 줌 배율
+          bindToBorders={true}
+          contentHeight={images.length > 1 ? height*2.4 : undefined}
+          initialOffsetY={images.length > 1 ? setY: 1}
+              
+              
+            >
+          {images.map((image, index) => (
+            <Image key={index} source={image} style={images.length > 1 ? styles.image2 : styles.image} />
+          ))}
+          </ReactNativeZoomableView>
+          
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' ,top:images.length > 1 ? -height*0.845 : -5}}>
+         
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',marginLeft:25 ,bottom:5}}>
+      <Text>{formatTime(playbackPosition)} / {formatTime(playbackDuration)}</Text>
         <Slider
               style={{ width: 230, height: 40, }}
               minimumValue={0}
@@ -1225,7 +1232,8 @@ useFocusEffect(
           return (
 
 <View style={styles.container}>
-    <ScrollView showsHorizontalScrollIndicator={false} horizontal={false}>
+    <ScrollView showsHorizontalScrollIndicator={false} horizontal={false} 
+            showsVerticalScrollIndicator={false}>
     <Text style={[styles.text, { fontSize: fontSize + 5, fontWeight: 'bold' }]}>
       {'\n'}{imageName}{'\n'}
       </Text>
@@ -1340,7 +1348,7 @@ const NewSongScreen = ({ route }) => {
     >
       <TouchableOpacity onPress={() => navigateToImageDetail(item.name)}>
         <View style={styles.itemContainer}>
-          <Text style={[styles.itemName2, { fontWeight: 'bold' }]}>
+          <Text style={[styles.itemName2, { }]}>
             {item.name}
           </Text>
         </View>
@@ -1349,7 +1357,6 @@ const NewSongScreen = ({ route }) => {
   )}
         keyExtractor={(item) => item.id.toString()}        
         contentContainerStyle={{ paddingVertical: 5,}}
-        ItemSeparatorComponent={() => <View style={styles.separator} />} // 구분선 추가
       />
     </View>
   );
