@@ -391,13 +391,13 @@ useEffect(() => {
 </TouchableOpacity>
 
 <View style={styles.indexContainer}>
-      {/* 인덱스 버튼들 */}
-      {[1, 50, 100, 150, 200, 250].map((item, index) => (
-        <TouchableOpacity key={index} onPress={() => scrollToItem(item-1)} style={styles.indexButton}>
-          <Text>{item}</Text>
-        </TouchableOpacity>
-      ))}
-    </View>
+  {/* 검색어가 없을 때만 인덱스 버튼들을 표시 */}
+  {!searchQuery && [1, 50, 100, 150, 200, 250].map((item, index) => (
+    <TouchableOpacity key={index} onPress={() => scrollToItem(item-1)} style={styles.indexButton}>
+      <Text>{item}</Text>
+    </TouchableOpacity>
+  ))}
+</View>
     
 <FlatList
       ref={flatListRef}
@@ -456,7 +456,7 @@ useEffect(() => {
 };
 
 const { width, height } = Dimensions.get('window');
-setY = height * 0.2
+setY = height * 0.45
 
 const ImageDetailScreen = ({ route,navigation }) => {
   const { imageName } = route.params;
@@ -769,13 +769,13 @@ const renderScene = ({ route }) => {
            
           <ReactNativeZoomableView   style={{ flexGrow: 1}}// ZoomableView 추가
           
-          maxZoom={images.length > 1 ? 6 : 3} // 최대 줌 배율
-          minZoom={images.length > 1 ? 2 : 1}
+          maxZoom={images.length > 1 ? 3 : 3} // 최대 줌 배율
+          minZoom={images.length > 1 ? 1 : 1}
           zoomStep={4} // 줌 단계
-          initialZoom={images.length > 1 ? 2: 1} // 초기 줌 배율
+          initialZoom={images.length > 1 ? 1: 1} // 초기 줌 배율
           bindToBorders={true}
+          contentHeight={images.length > 1 ? height*2.5 : undefined}
           initialOffsetY={images.length > 1 ? setY: 1}
-              
               
               
             >
@@ -784,13 +784,13 @@ const renderScene = ({ route }) => {
           ))}
           </ReactNativeZoomableView>
           
-          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' ,top:-5}}>
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' ,top:images.length > 1 ? -680 : -5}}>
          
-      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',marginLeft:30 ,bottom:5}}>
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',marginLeft:25 ,bottom:5}}>
       <Text>{formatTime(playbackPosition)} / {formatTime(playbackDuration)}</Text>
       
     <Slider
-      style={{ width: 200, height: 40 }}
+      style={{ width: 230, height: 40 }}
       minimumValue={0}
       maximumValue={1}
       value={playbackPosition / playbackDuration}
@@ -803,11 +803,11 @@ const renderScene = ({ route }) => {
       {/* 다시 재생 토글 버튼 */}
     </View>
     <View style={{ flexDirection: 'row', justifyContent: 'center',left: 8, bottom:10}}>
-    <TouchableOpacity onPress={handleRestart} style={{ marginRight: 40 ,marginLeft:40}}>
+    <TouchableOpacity onPress={handleRestart} style={{ marginRight: 45 ,marginLeft:25}}>
                 <Image source={require('./images/backward.png')} style={{ width: 25, height: 25}} />
               </TouchableOpacity>
       {/* 재생/일시정지 토글 버튼 */}
-                <TouchableOpacity onPress={handleTogglePlayPause} style={{ marginRight: 40,marginLeft:40}}>
+                <TouchableOpacity onPress={handleTogglePlayPause} style={{ marginRight: 45,marginLeft:45}}>
                 <Image
                   source={isPlaying ? require('./images/pause.png') : require('./images/play.png')}
                   style={{ width: 25, height: 25}}
@@ -815,7 +815,7 @@ const renderScene = ({ route }) => {
               </TouchableOpacity>
     
       {/* 반복 재생 토글 버튼 */}
-      <TouchableOpacity onPress={toggleLooping} style={{ marginLeft:40,marginRight: 40 }}>
+      <TouchableOpacity onPress={toggleLooping} style={{ marginLeft:45,marginRight: 40 }}>
       <Image
         source={isLooping ? require('./images/looping.png') : require('./images/nonloop.png')} // 이미지 경로는 실제 프로젝트 구조에 맞게 조정
         style={{ width: 25, height: 25 }}// 이미지 크기 조정
@@ -1166,9 +1166,9 @@ useFocusEffect(
             <ReactNativeZoomableView // ZoomableView 추가
             
             maxZoom={images.length > 1 ? 6 : 3} // 최대 줌 배율
-            minZoom={images.length > 1 ? 2 : 1}
+            minZoom={images.length > 1 ? 1.8 : 1}
             zoomStep={4} // 줌 단계
-            initialZoom={images.length > 1 ? 2: 1} // 초기 줌 배율
+            initialZoom={images.length > 1 ? 1.8: 1} // 초기 줌 배율
             bindToBorders={true}
             initialOffsetY={images.length > 1 ? setY: 1}
               >
@@ -1179,10 +1179,10 @@ useFocusEffect(
             
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' ,top:-5}}>
            
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',marginLeft:30,bottom:5 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',marginLeft:25 ,bottom:5}}>
         <Text>{formatTime(playbackPosition)} / {formatTime(playbackDuration)}</Text>
         <Slider
-              style={{ width: 200, height: 40, }}
+              style={{ width: 230, height: 40, }}
               minimumValue={0}
               maximumValue={1}
               value={playbackPosition / playbackDuration}
@@ -1194,11 +1194,11 @@ useFocusEffect(
          {/* 다시 재생 토글 버튼 */}
     </View>
     <View style={{ flexDirection: 'row', justifyContent: 'center',left: 8, bottom:10}}>
-    <TouchableOpacity onPress={handleRestart} style={{ marginRight: 40 ,marginLeft:40}}>
+    <TouchableOpacity onPress={handleRestart} style={{ marginRight: 45 ,marginLeft:25}}>
                 <Image source={require('./images/backward.png')} style={{ width: 25, height: 25}} />
               </TouchableOpacity>
       {/* 재생/일시정지 토글 버튼 */}
-                <TouchableOpacity onPress={handleTogglePlayPause} style={{ marginRight: 40,marginLeft:40}}>
+      <TouchableOpacity onPress={handleTogglePlayPause} style={{ marginRight: 45,marginLeft:45}}>
                 <Image
                   source={isPlaying ? require('./images/pause.png') : require('./images/play.png')}
                   style={{ width: 25, height: 25}}
@@ -1206,7 +1206,7 @@ useFocusEffect(
               </TouchableOpacity>
     
       {/* 반복 재생 토글 버튼 */}
-      <TouchableOpacity onPress={toggleLooping} style={{ marginLeft:40,marginRight: 40 }}>
+      <TouchableOpacity onPress={toggleLooping} style={{ marginLeft:45,marginRight: 40 }}>
       <Image
         source={isLooping ? require('./images/looping.png') : require('./images/nonloop.png')} // 이미지 경로는 실제 프로젝트 구조에 맞게 조정
         style={{ width: 25, height: 25 }}// 이미지 크기 조정

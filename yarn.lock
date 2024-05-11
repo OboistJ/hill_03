@@ -5442,6 +5442,11 @@ react-native-tab-view@^3.5.2, "react-native-tab-view@>= 3.0.0":
   dependencies:
     use-latest-callback "^0.1.5"
 
+react-native-zoom-view@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/react-native-zoom-view/-/react-native-zoom-view-1.0.2.tgz"
+  integrity sha512-SRRYKailzRqBsQcw+w5CzjlUxEqmmQDEKWP5lyR3fyR/yWB4ycM9q7PFrbl156xx5ltLlntobOFzrJjjcSgP6A==
+
 react-native@*, "react-native@^0.0.0-0 || >=0.60 <1.0", react-native@>=0.54.0, react-native@>=0.57, react-native@>=0.57.0, react-native@0.73.5:
   version "0.73.5"
   resolved "https://registry.npmjs.org/react-native/-/react-native-0.73.5.tgz"
