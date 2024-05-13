@@ -4,12 +4,7 @@ const windowHeight = Dimensions.get('window').height;
 
 
 export const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      paddingLeft:10,
-      paddingRight:10,
-    },
+    
     title: {
       top:3,
       left:40,
@@ -18,6 +13,14 @@ export const styles = StyleSheet.create({
       //marginBottom: ,
       marginTop: 10,
     },
+
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      paddingLeft:10,
+      paddingRight:10,
+    },
+    
     searchInput: {
       height: 45,
       borderWidth: 1,

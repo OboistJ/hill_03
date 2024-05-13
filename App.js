@@ -54,7 +54,7 @@ const HelpModal = ({ visible, onClose }) => (
               {'\n\n'}
               ⦁ 찬송 검색 (장, 제목, 가사로 검색할 수 있습니다.) {'\n\n'} 
               ⦁ 메뉴-더욱 소중히 불러보고 싶은 찬송(즐겨찾기) {'\n\n'} 
-              각 항목을 왼쪽으로 스와이프하여 지정/해제,{'\n'}
+              각 항목을 오른쪽으로 스와이프하여 지정/해제,{'\n'}
               왼쪽 상단 메뉴-더욱 소중히 불러보고 싶은 찬송에서 확인할 수 있습니다. {'\n\n'} 
               ⦁ 찬송 재생 (처음부터 재생, 재생/정지, 반복 재생) {'\n\n'} 
               ⦁ 메뉴-진토리 홈페이지 접속  {'\n\n'} 
@@ -331,7 +331,7 @@ useEffect(() => {
     return (
       <Swipeout
         key={item.id}
-        right={[
+        left={[
           {
             text: (
               <Pressable
@@ -377,18 +377,20 @@ useEffect(() => {
       {/* 모달 컴포넌트 추가 */}
       <HelpModal visible={modalVisible2} onClose={closeModal2} />
 
-      <TextInput
+     
+  <TextInput
     style={styles.searchInput}
     placeholder="장, 제목, 가사로 검색"
     value={searchQuery}
     onChangeText={setSearchQuery}
-    />
-<TouchableOpacity onPress={clearSearch} style={[styles.clearButton, searchQuery ? null : styles.clearButtonDisabled]}>
-  <Image
-    source={require('./images/SearchCancel.png')}
-    style={styles.clearButtonImage}
   />
-</TouchableOpacity>
+  <TouchableOpacity onPress={clearSearch} style={[styles.clearButton, searchQuery ? null : styles.clearButtonDisabled]}>
+    <Image
+      source={require('./images/SearchCancel.png')}
+      style={styles.clearButtonImage}
+    />
+  </TouchableOpacity>
+
 
 <View style={styles.indexContainer}>
   {/* 검색어가 없을 때만 인덱스 버튼들을 표시 */}
@@ -776,8 +778,6 @@ const renderScene = ({ route }) => {
           bindToBorders={true}
           contentHeight={images.length > 1 ? height*2.4 : undefined}
           initialOffsetY={images.length > 1 ? setY: 1}
-              
-              
             >
           {images.map((image, index) => (
             <Image key={index} source={image} style={images.length > 1 ? styles.image2 : styles.image} />
@@ -1328,7 +1328,7 @@ const NewSongScreen = ({ route }) => {
   data={filteredSongs}
   renderItem={({ item }) => (
     <Swipeout
-      right={[
+      left={[
         {
           component: (
             <TouchableOpacity
