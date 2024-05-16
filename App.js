@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect,useRef,useLayoutEffect} from 'react';
 import { NavigationContainer,useFocusEffect,useNavigation} from '@react-navigation/native';
 import { createStackNavigator} from '@react-navigation/stack';
@@ -367,29 +368,35 @@ useEffect(() => {
 
   return (
     <View style={styles.container}>
-      
+      <View style={{ }}>
+      <View style={styles.menuButtonContainer}>
+  <TouchableOpacity onPress={openModal}>
+    <Text style={styles.menuButtonText}>☰</Text>
+  </TouchableOpacity>
+</View>
         <Text style={styles.title}>찬송 목록</Text>
         <TouchableOpacity onPress={openModal2} style={styles.helpButtonContainer}>
   <Image source={require('./images/Help.png')} style={styles.helpIcon} />
   <Text style={styles.helpButtonText}>도움말</Text>
 </TouchableOpacity>
+    </View>
 
       {/* 모달 컴포넌트 추가 */}
       <HelpModal visible={modalVisible2} onClose={closeModal2} />
 
-     
+      <TouchableOpacity onPress={clearSearch} style={[styles.clearButton, searchQuery ? null : styles.clearButtonDisabled]}>
+    <Image
+      source={require('./images/SearchCancel.png')}
+      style={styles.clearButtonImage}
+    />
+  </TouchableOpacity>
   <TextInput
     style={styles.searchInput}
     placeholder="장, 제목, 가사로 검색"
     value={searchQuery}
     onChangeText={setSearchQuery}
   />
-  <TouchableOpacity onPress={clearSearch} style={[styles.clearButton, searchQuery ? null : styles.clearButtonDisabled]}>
-    <Image
-      source={require('./images/SearchCancel.png')}
-      style={styles.clearButtonImage}
-    />
-  </TouchableOpacity>
+  
 
 
 <View style={styles.indexContainer}>
@@ -425,11 +432,7 @@ useEffect(() => {
   showsVerticalScrollIndicator={false} // 스크롤바 숨기기
 />
 
-      <View style={styles.menuButtonContainer}>
-  <TouchableOpacity onPress={openModal}>
-    <Text style={styles.menuButtonText}>☰</Text>
-  </TouchableOpacity>
-</View>
+      
 <Modal
   screenOptions={{ headerShown: false }}
   visible={modalVisible}

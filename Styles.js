@@ -6,12 +6,61 @@ const windowHeight = Dimensions.get('window').height;
 export const styles = StyleSheet.create({
     
     title: {
-      top:3,
-      left:40,
+      top:0.5,
+      left:50,
       fontSize: 24,
       fontWeight: 'bold',
-      //marginBottom: ,
+      marginBottom: 10,
       marginTop: 10,
+    },
+
+    menuButtonContainer: {
+      position: 'absolute',
+      top: 11,
+      left: 10,
+      marginBottom: 20,
+    },
+
+    menuButtonText: {
+      fontSize: 24,
+      fontWeight: 'bold',
+      color: 'black',
+    },
+
+    helpButtonContainer: {
+      position: 'absolute',
+      flexDirection: 'row', // 아이콘과 텍스트를 가로로 배열하기 위해 설정
+      alignItems: 'center', // 세로 가운데 정렬
+      //position: 'relative', // 부모 요소에 상대적인 위치를 설정
+      alignSelf: 'flex-end', // 오른쪽 끝으로 이동
+      top:5,
+      right:5
+    },
+    helpIcon: {
+      width: 19, // 아이콘의 너비 설정
+      height:19, // 아이콘의 높이 설정
+      marginRight: 5, // 아이콘과 텍스트 사이의 간격 조절
+      top:5,
+    },
+    helpButtonText: {
+      top:5,
+      fontSize: 24, // 텍스트의 크기 설정
+      // 다른 텍스트 스타일들...
+    },
+    clearButton: {
+      //position: 'absolute',
+      right: -165,
+      padding:20,
+      top: -9,
+      zIndex: 1,
+    },
+    clearButtonImage: {
+      width: 40, // 원하는 너비
+      height: 40, // 원하는 높이
+      zIndex: 1,
+      top: -9,
+      right: -165,
+      opacity: 0.7, // 비활성화 상태일 때 투명도 조절
     },
 
     container: {
@@ -19,6 +68,7 @@ export const styles = StyleSheet.create({
       backgroundColor: '#fff',
       paddingLeft:10,
       paddingRight:10,
+      
     },
     
     searchInput: {
@@ -27,31 +77,15 @@ export const styles = StyleSheet.create({
       borderColor: '#ccc',
       borderRadius: 5,
       paddingHorizontal: 10,
-      marginTop:-10,
+      marginTop:-80,
       marginBottom: 10,
       top:0
     },
-    clearButton: {
-      position: 'absolute',
-      right: 9,
-      padding:20,
-      top: 42,
-      right : -10,
-    },
-    // clearButtonText: {
-    //   //color: 'red',
-    //   fontWeight: 'bold',
-    //   fontSize:17,
-    //   top:57,
-    //   right:10
-    // },
-    clearButtonImage: {
-      width: 40, // 원하는 너비
-      height: 40, // 원하는 높이
-      zIndex: 1,
-      
-      right: 9,
-      opacity: 0.7, // 비활성화 상태일 때 투명도 조절
+   
+
+    clearButtonDisabled: {
+      opacity: 0, // 비활성화 상태일 때 투명도 조절
+      pointerEvents: 'none', // 비활성화 상태일 때 터치 이벤트 비활성화
     },
     itemContainer: {
       backgroundColor: '#fff', // 각 항목의 배경을 하얀색으로 설정
@@ -93,17 +127,8 @@ export const styles = StyleSheet.create({
       resizeMode: 'contain', // 이미지가 화면에 꽉 차도록 조절
     },
     
-    menuButtonContainer: {
-      position: 'absolute',
-      top: 11,
-      left: 10,
-      marginBottom: 20,
-    },
-    menuButtonText: {
-      fontSize: 28,
-      fontWeight: 'bold',
-      color: 'black',
-    },
+    
+   
     // 모달의 배경을 스타일링합니다.
     modalOverlay: {
       flex: 1,
@@ -157,10 +182,7 @@ export const styles = StyleSheet.create({
       shadowOpacity: 0, // iOS에서 그림자를 제거합니다.
       borderBottomWidth: 0, // 헤더의 아래 테두리를 제거합니다.
     },
-    clearButtonDisabled: {
-      opacity: 0, // 비활성화 상태일 때 투명도 조절
-      pointerEvents: 'none', // 비활성화 상태일 때 터치 이벤트 비활성화
-    },
+    
     buttonContainer: {
       flexDirection: 'row', // 버튼을 가로로 배치하기 위해 flex 방향 설정
       alignItems: 'center', // 버튼을 수직 중앙 정렬하기 위해 추가
@@ -225,7 +247,7 @@ export const styles = StyleSheet.create({
       height: 25, // 동일한 높이
     },
     helpButton: {
-      position: 'absolute',
+      //position: 'absolute',
       //top: 3,
       right: 10,
       //backgroundColor: 'none',
@@ -287,25 +309,7 @@ export const styles = StyleSheet.create({
     smallText: {
       fontSize: 13, // 원하는 크기로 설정
     },
-    helpButtonContainer: {
-      flexDirection: 'row', // 아이콘과 텍스트를 가로로 배열하기 위해 설정
-      alignItems: 'center', // 세로 가운데 정렬
-      position: 'relative', // 부모 요소에 상대적인 위치를 설정
-      alignSelf: 'flex-end', // 오른쪽 끝으로 이동
-      bottom:20,
-      right:5
-    },
-    helpIcon: {
-      bottom:2,
-      width: 16, // 아이콘의 너비 설정
-      height:16, // 아이콘의 높이 설정
-      marginRight: 5, // 아이콘과 텍스트 사이의 간격 조절
-    },
-    helpButtonText: {
-      bottom:2,
-      fontSize: 16.5, // 텍스트의 크기 설정
-      // 다른 텍스트 스타일들...
-    },
+    
 
     buttonContainer: {
       flexDirection: 'row',
