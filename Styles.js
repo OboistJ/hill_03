@@ -33,17 +33,17 @@ export const styles = StyleSheet.create({
       alignItems: 'center', // 세로 가운데 정렬
       //position: 'relative', // 부모 요소에 상대적인 위치를 설정
       alignSelf: 'flex-end', // 오른쪽 끝으로 이동
-      top:5,
-      right:5
+      top:5.5,
+      right:10
     },
     helpIcon: {
       width: 19, // 아이콘의 너비 설정
       height:19, // 아이콘의 높이 설정
       marginRight: 5, // 아이콘과 텍스트 사이의 간격 조절
-      top:5,
+      top:5.5,
     },
     helpButtonText: {
-      top:5,
+      top:5.5,
       fontSize: 24, // 텍스트의 크기 설정
       // 다른 텍스트 스타일들...
     },
