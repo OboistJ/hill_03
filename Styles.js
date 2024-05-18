@@ -6,7 +6,7 @@ const windowHeight = Dimensions.get('window').height;
 export const styles = StyleSheet.create({
     
     title: {
-      top:0.5,
+      top:0,
       left:50,
       fontSize: 24,
       fontWeight: 'bold',
@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
 
     menuButtonContainer: {
       position: 'absolute',
-      top: 11,
+      top: 10.5,
       left: 10,
       marginBottom: 20,
     },
@@ -33,18 +33,18 @@ export const styles = StyleSheet.create({
       alignItems: 'center', // 세로 가운데 정렬
       //position: 'relative', // 부모 요소에 상대적인 위치를 설정
       alignSelf: 'flex-end', // 오른쪽 끝으로 이동
-      top:5.5,
+      top:11,
       right:10
     },
     helpIcon: {
-      width: 19, // 아이콘의 너비 설정
-      height:19, // 아이콘의 높이 설정
+      width: 15, // 아이콘의 너비 설정
+      height:15, // 아이콘의 높이 설정
       marginRight: 5, // 아이콘과 텍스트 사이의 간격 조절
       top:5.5,
     },
     helpButtonText: {
-      top:5.5,
-      fontSize: 24, // 텍스트의 크기 설정
+      top:4.5,
+      fontSize: 18, // 텍스트의 크기 설정
       // 다른 텍스트 스타일들...
     },
     clearButton: {
@@ -59,7 +59,7 @@ export const styles = StyleSheet.create({
       height: 40, // 원하는 높이
       zIndex: 1,
       top: -9,
-      right: -165,
+      right: -135,
       opacity: 0.7, // 비활성화 상태일 때 투명도 조절
     },
 
