@@ -591,7 +591,7 @@ useLayoutEffect(() => {
     ),
  
     headerRight: () => (
-      <TouchableOpacity onPress={goToNext} style={{ flexDirection: 'row', alignItems: 'center', position: 'absolute',  right: 80 }}>
+      <TouchableOpacity onPress={goToNext} style={{ flexDirection: 'row', alignItems: 'center', position: 'absolute',  right: 95 }}>
         {/* <Text style={{fontSize: 20,color: 'white',}}>다음</Text> */}
         <Image
                 source={require('./images/next.png')}
@@ -604,7 +604,7 @@ useLayoutEffect(() => {
     title: `${imageNames[index].match(/\d+/)}장`,
     headerTitleStyle: {
       fontSize: 23, // 여기에서 폰트 사이즈를 원하는 크기로 조정하세요.
-      
+      top:-2.5
     },
     headerTitleAlign: 'center', // 타이틀을 가운데로 정렬
   });
@@ -1028,7 +1028,7 @@ useFocusEffect(
         ),
      
         headerRight: () => (
-          <TouchableOpacity onPress={goToNext} style={{ flexDirection: 'row', alignItems: 'center', position: 'absolute',  right: 80 }}>
+          <TouchableOpacity onPress={goToNext} style={{ flexDirection: 'row', alignItems: 'center', position: 'absolute',  right: 95 }}>
             {/* <Text style={{fontSize: 20,color: 'white',}}>다음</Text> */}
             <Image
                     source={require('./images/next.png')}
@@ -1040,6 +1040,7 @@ useFocusEffect(
         title: `${currentSong.name.match(/\d+/)}장`,
         headerTitleStyle: {
           fontSize: 23,
+          top:-2.5
         },
         headerTitleAlign: 'center', // 타이틀을 가운데로 정렬
       });

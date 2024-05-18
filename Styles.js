@@ -95,7 +95,7 @@ export const styles = StyleSheet.create({
       height: 50,
     },
     itemName: {
-      top: 0-5, // 이미지의 중앙에 위치하도록 설정
+      top: 0, // 이미지의 중앙에 위치하도록 설정
       fontSize: 16,
     },
     itemName2: {
@@ -324,6 +324,7 @@ export const styles = StyleSheet.create({
       marginBottom: 10
     },
     buttonText: {
+      top:-2.5,
       fontSize: 20,
     },
     // 기존 스타일 ...
