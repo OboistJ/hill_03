@@ -6,7 +6,7 @@ const windowHeight = Dimensions.get('window').height;
 export const styles = StyleSheet.create({
     
     title: {
-      top:0,
+      top:-2.5,
       left:50,
       fontSize: 24,
       fontWeight: 'bold',
@@ -43,7 +43,7 @@ export const styles = StyleSheet.create({
       top:5.5,
     },
     helpButtonText: {
-      top:4.5,
+      top:2.5,
       fontSize: 18, // 텍스트의 크기 설정
       // 다른 텍스트 스타일들...
     },
