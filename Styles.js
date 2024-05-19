@@ -49,7 +49,7 @@ export const styles = StyleSheet.create({
     },
     clearButton: {
       //position: 'absolute',
-      right: -300,
+      right: -320,
       padding:20,
       top: -9,
       zIndex: 1,
@@ -59,7 +59,7 @@ export const styles = StyleSheet.create({
       height: 40, // 원하는 높이
       zIndex: 1,
       top: -9,
-      right: 25,
+      right: 20,
       opacity: 0.7, // 비활성화 상태일 때 투명도 조절
     },
 
