@@ -6,7 +6,7 @@ const windowHeight = Dimensions.get('window').height;
 export const styles = StyleSheet.create({
     
     title: {
-      top:-2.85,
+      top:-2.75,
       left:50,
       fontSize: 24,
       fontWeight: 'bold',
