@@ -6,7 +6,7 @@ const windowHeight = Dimensions.get('window').height;
 export const styles = StyleSheet.create({
     
     title: {
-      top:-2.7,
+      top:-2.85,
       left:50,
       fontSize: 24,
       fontWeight: 'bold',
@@ -43,13 +43,13 @@ export const styles = StyleSheet.create({
       top:5,
     },
     helpButtonText: {
-      top:2,
+      top:2.3,
       fontSize: 18, // 텍스트의 크기 설정
       // 다른 텍스트 스타일들...
     },
     clearButton: {
       //position: 'absolute',
-      right: -320,
+      right: -300,
       padding:0,
       top: -5,
       zIndex: 1,
@@ -59,7 +59,7 @@ export const styles = StyleSheet.create({
       height: 40, // 원하는 높이
       zIndex: 1,
       top: 6.5,
-      right: -2.5,
+      right: 2,
       opacity: 0.7, // 비활성화 상태일 때 투명도 조절
     },
 
