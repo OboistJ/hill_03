@@ -6,7 +6,7 @@ const windowHeight = Dimensions.get('window').height;
 export const styles = StyleSheet.create({
     
     title: {
-      top:-2.75,
+      top:-2.7,
       left:50,
       fontSize: 24,
       fontWeight: 'bold',
@@ -50,16 +50,16 @@ export const styles = StyleSheet.create({
     clearButton: {
       //position: 'absolute',
       right: -320,
-      padding:20,
-      top: -9,
+      padding:0,
+      top: -5,
       zIndex: 1,
     },
     clearButtonImage: {
       width: 40, // 원하는 너비
       height: 40, // 원하는 높이
       zIndex: 1,
-      top: -9,
-      right: 20,
+      top: 6,
+      right: 0,
       opacity: 0.7, // 비활성화 상태일 때 투명도 조절
     },
 
@@ -77,7 +77,7 @@ export const styles = StyleSheet.create({
       borderColor: '#ccc',
       borderRadius: 5,
       paddingHorizontal: 10,
-      marginTop:-80,
+      marginTop:-40,
       marginBottom: 10,
       top:0
     },
