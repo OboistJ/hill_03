@@ -58,8 +58,8 @@ export const styles = StyleSheet.create({
       width: 40, // 원하는 너비
       height: 40, // 원하는 높이
       zIndex: 1,
-      top: 6,
-      right: 0,
+      top: 6.5,
+      right: -2.5,
       opacity: 0.7, // 비활성화 상태일 때 투명도 조절
     },
 
