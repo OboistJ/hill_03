@@ -37,8 +37,8 @@ export const styles = StyleSheet.create({
       right:10
     },
     helpIcon: {
-      width: 15, // 아이콘의 너비 설정
-      height:15, // 아이콘의 높이 설정
+      width: 16, // 아이콘의 너비 설정
+      height:16, // 아이콘의 높이 설정
       marginRight: 5, // 아이콘과 텍스트 사이의 간격 조절
       top:5,
     },
