@@ -6,7 +6,7 @@ const windowHeight = Dimensions.get('window').height;
 export const styles = StyleSheet.create({
     
     title: {
-      top:-2.85,
+      top:-2.7,
       left:50,
       fontSize: 24,
       fontWeight: 'bold',
@@ -37,29 +37,30 @@ export const styles = StyleSheet.create({
       right:10
     },
     helpIcon: {
-      width: 16, // 아이콘의 너비 설정
-      height:16, // 아이콘의 높이 설정
+      width: 15, // 아이콘의 너비 설정
+      height:15, // 아이콘의 높이 설정
       marginRight: 5, // 아이콘과 텍스트 사이의 간격 조절
       top:5,
     },
     helpButtonText: {
-      top:2.3,
+      top:2,
       fontSize: 18, // 텍스트의 크기 설정
       // 다른 텍스트 스타일들...
     },
     clearButton: {
       //position: 'absolute',
-      right: -300,
+      right: 2,
+      alignSelf: 'flex-end', // 오른쪽 끝으로 이동
       padding:0,
-      top: -5,
+      top: -4,
       zIndex: 1,
     },
     clearButtonImage: {
       width: 40, // 원하는 너비
       height: 40, // 원하는 높이
       zIndex: 1,
-      top: 6.5,
-      right: 2,
+      top: 6,
+      right: 0,
       opacity: 0.7, // 비활성화 상태일 때 투명도 조절
     },
 
@@ -114,18 +115,35 @@ export const styles = StyleSheet.create({
       alignItems: 'center',
     },
     image: {
-      marginTop:-18,
+      top:0,
+      marginTop:-50,
       width: '100%', // 이미지를 화면에 꽉 차도록 넓이 설정
-      height: windowHeight * 0.8, // 이미지가 화면의 70%를 차지하도록 설정
+      height: windowHeight * 0.85, // 이미지가 화면의 70%를 차지하도록 설정
       resizeMode: 'contain', // 이미지가 화면에 꽉 차도록 조절
     },
     image2: {
-      top:-310,
-      marginTop:0,
+      top:-290,
+      marginTop:-36,
       width: '100%', // 이미지를 화면에 꽉 차도록 넓이 설정
-      height: windowHeight * 0.8, // 이미지가 화면의 70%를 차지하도록 설정
+      height: windowHeight * 0.85, // 이미지가 화면의 70%를 차지하도록 설정
       resizeMode: 'contain', // 이미지가 화면에 꽉 차도록 조절
     },
+
+    image3: {
+      top:0,
+      marginTop:-65,
+      width: '100%', // 이미지를 화면에 꽉 차도록 넓이 설정
+      height: windowHeight * 0.85, // 이미지가 화면의 70%를 차지하도록 설정
+      resizeMode: 'contain', // 이미지가 화면에 꽉 차도록 조절
+    },
+      image4: {
+        top:-290,
+        marginTop:-27,
+        width: '100%', // 이미지를 화면에 꽉 차도록 넓이 설정
+        height: windowHeight * 0.85, // 이미지가 화면의 70%를 차지하도록 설정
+        resizeMode: 'contain', // 이미지가 화면에 꽉 차도록 조절
+    },
+    
     
     
    
@@ -296,7 +314,7 @@ export const styles = StyleSheet.create({
       fontWeight: 'bold', // 텍스트를 굵게
     },
     modalText1:{
-    fontSize:16,
+    fontSize:14,
     textAlign: 'center', // 텍스트를 가운데 정렬
     },
     heading: {

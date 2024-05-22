@@ -461,7 +461,7 @@ useEffect(() => {
 };
 
 const { width, height } = Dimensions.get('window');
-setY = height * 0.4
+setY = height * 0.39
 
 const ImageDetailScreen = ({ route,navigation }) => {
   const { imageName } = route.params;
@@ -1184,11 +1184,11 @@ useFocusEffect(
               
             >
           {images.map((image, index) => (
-            <Image key={index} source={image} style={images.length > 1 ? styles.image2 : styles.image} />
+            <Image key={index} source={image} style={images.length > 1 ? styles.image4 : styles.image3} />
           ))}
           </ReactNativeZoomableView>
           
-          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' ,top:images.length > 1 ? -height*0.845 : -5}}>
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' ,top:images.length > 1 ? -height*0.85 : -5}}>
          
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',marginLeft:25 ,bottom:5}}>
       <Text>{formatTime(playbackPosition)} / {formatTime(playbackDuration)}</Text>
