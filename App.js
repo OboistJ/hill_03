@@ -573,13 +573,13 @@ useLayoutEffect(() => {
     ),
     headerLeft: () => (
       <View style={styles.headerLeftContainer}>
-      <TouchableOpacity onPress={() => navigation.goBack('Home', { direction: 'back' })}>
+      {/* <TouchableOpacity onPress={() => navigation.goBack('Home', { direction: 'back' })}>
           <Image
             source={require('./images/previous.png')}
             style={styles.buttonImagePrevIndex}
           />
           <Text style={styles.buttonTextIndex}>목록</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity onPress={goToPrevious} style={{ flexDirection: 'row', alignItems: 'center',  position: 'absolute',   left: 100 ,}}>
            <Image
                 source={require('./images/previous.png')}
