@@ -366,4 +366,5 @@ export const styles = StyleSheet.create({
      // 텍스트를 가운데 정렬
     // 폰트 스타일 설정이 필요한 경우 여기에 추가
   },
+
   });

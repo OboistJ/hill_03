@@ -353,7 +353,7 @@ useEffect(() => {
         onOpen={() => toggleSwipeout(item.id)}
         onClose={handleSwipeClose}
       >
-      <TouchableOpacity onPress={() => navigation.navigate('ImageDetail', { imageName: item.name })}>
+      <TouchableOpacity onPress={() => navigation.navigate('ImageDetailScreen', { imageName: item.name })}>
           <View style={styles.itemContainer}>
             <Text style={[styles.itemName, { fontFamily: item.favorite ? 'NotoSansKR-Bold' : 'NotoSansKR-Regular', color: item.favorite ? 'black' : 'black' }]}>
               {item.name}
@@ -448,7 +448,7 @@ useEffect(() => {
   <View style={styles.modalContent}>
     {/* 모달 내용 추가 */}
     <TouchableOpacity onPress={navigateToNewSongScreen}>
-      <Text style={styles.modalItem}> ♫    더욱 소중히 불러보고 싶은 찬송</Text>
+      <Text style={styles.modalItem} numberOfLines={1} ellipsizeMode="tail"> ♫    더욱 소중히 불러보고 싶은 찬송</Text>
     </TouchableOpacity>
           {/* Add a menu item for '진토리 홈페이지' */}
           <TouchableOpacity onPress={navigateToJintoriWebsite}>
@@ -527,7 +527,7 @@ const handleSliderComplete = async (value) => {
       await sound.stopAsync();
     }
     const prevImageName = imageKeys[currentIndex - 1];
-    navigation.push('ImageDetailScreen', {
+    navigation.replace('ImageDetailScreen', {
       imageName: prevImageName,
       tabIndex
     });
@@ -541,7 +541,7 @@ const goToNext = async () => {
       await sound.stopAsync();
     }
     const nextImageName = imageKeys[currentIndex + 1];
-    navigation.push('ImageDetailScreen', {
+    navigation.replace('ImageDetailScreen', {
       imageName: nextImageName,
       tabIndex
     });
@@ -573,7 +573,7 @@ useLayoutEffect(() => {
     ),
     headerLeft: () => (
       <View style={styles.headerLeftContainer}>
-      <TouchableOpacity onPress={() => navigation.replace('Home', { direction: 'back' })}>
+      <TouchableOpacity onPress={() => navigation.goBack('Home', { direction: 'back' })}>
           <Image
             source={require('./images/previous.png')}
             style={styles.buttonImagePrevIndex}
@@ -1400,7 +1400,8 @@ const App = () => {
           name="더욱 소중히 불러보고 싶은 찬송"
           component={NewSongScreen}
           options={{
-
+            numberOfLines:1, 
+            ellipsizeMode:"tail",
             headerBackTitle: '목록',
             headerTintColor: 'white',
             headerTitleStyle: {
@@ -1496,7 +1497,7 @@ const HomeStack = () => {
         }}
       />
       <Stack.Screen
-        name="ImageDetail"
+        name="ImageDetailScreen"
         component={ImageDetailScreen}
         options={({ route }) => ({
           headerBackTitle: '목록',
