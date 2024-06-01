@@ -53,7 +53,7 @@ export const soundSources = {
   '49.귀 뚫은 종': require('./sounds/49.mp3'),
   '50.나는 순례자': require('./sounds/50.mp3'),
   '51.나 지금 있는 이곳은': require('./sounds/51a.mp3'),
-  '51.주님 주님 내주님': require('./sounds/51b.mp3'),
+  '51.주님 주님 내 주님': require('./sounds/51b.mp3'),
   '52.나는 주의 것': require('./sounds/52.mp3'),
   '53.방황하는 나그네': require('./sounds/53.mp3'),
   '54.사랑의 송가': require('./sounds/54.mp3'),
