@@ -37,7 +37,7 @@ export const imageSources = {
   '33.열린 천국 문': [require('./images/47.png')],
   '34.살아계신 주': [require('./images/48.png'), require('./images/49.png')],
   '35.오늘 내 주님의 마음': [require('./images/50.png')],
-  '36.나의 가는 이 길이': [require('./images/51.png')],
+  '36.나의 가는 이 길이': [require('./images/51-1.png')],
   '37.주님이 이끄시네': [require('./images/52.png')],
   '38.눈물없는 곳': [require('./images/53.png')],
   '40.나의 기도': [require('./images/54.png')],
