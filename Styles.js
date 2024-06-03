@@ -6,46 +6,57 @@ const windowHeight = Dimensions.get('window').height;
 export const styles = StyleSheet.create({
     
     title: {
-      top:-2.7,
-      left:50,
-      fontSize: 24,
+      
+      top:0,
+      left:15,
+      fontSize: 21,
       fontWeight: 'bold',
       marginBottom: 10,
       marginTop: 10,
     },
 
-    menuButtonContainer: {
-      position: 'absolute',
-      top: 10.5,
-      left: 10,
-      marginBottom: 20,
-    },
-
     menuButtonText: {
-      fontSize: 24,
+      
+      top:0,
+      fontSize: 24.5,
       fontWeight: 'bold',
       color: 'black',
+      marginBottom: 10,
+      marginTop: 10,
     },
 
-    helpButtonContainer: {
-      position: 'absolute',
-      flexDirection: 'row', // 아이콘과 텍스트를 가로로 배열하기 위해 설정
-      alignItems: 'center', // 세로 가운데 정렬
-      //position: 'relative', // 부모 요소에 상대적인 위치를 설정
-      alignSelf: 'flex-end', // 오른쪽 끝으로 이동
-      top:11,
-      right:10
+    menuButtonContainer: {
+      alignItems: 'center',
+      flexDirection: 'row',
+      top: 0,
+      left: 10,
     },
-    helpIcon: {
-      width: 15, // 아이콘의 너비 설정
-      height:15, // 아이콘의 높이 설정
-      marginRight: 5, // 아이콘과 텍스트 사이의 간격 조절
-      top:5,
-    },
+
+   
+
+    // helpButtonContainer: {
+      
+    //   alignItems: 'center', // 세로 가운데 정렬
+    //   position: 'relative', // 부모 요소에 상대적인 위치를 설정
+      
+    //   top:0,
+    // },
+   
     helpButtonText: {
-      top:2,
-      fontSize: 18, // 텍스트의 크기 설정
-      // 다른 텍스트 스타일들...
+      alignSelf: 'flex-end', // 오른쪽 끝으로 이동
+      top:0,
+      fontSize: 16, // 텍스트의 크기 설정
+      marginBottom: 10,
+      marginTop: 10,
+      
+    },
+
+    helpIcon: {
+      width: 22, // 아이콘의 너비 설정
+      height:20, // 아이콘의 높이 설정
+      marginBottom: 10,
+      marginTop: 10,
+      top:0,
     },
     clearButton: {
       //position: 'absolute',
@@ -116,13 +127,13 @@ export const styles = StyleSheet.create({
     },
     image: {
       top:0,
-      marginTop:-50,
+      marginTop:-windowHeight*0.05,
       width: '100%', // 이미지를 화면에 꽉 차도록 넓이 설정
       height: windowHeight * 0.85, // 이미지가 화면의 70%를 차지하도록 설정
       resizeMode: 'contain', // 이미지가 화면에 꽉 차도록 조절
     },
     image2: {
-      top:-290,
+      top:-windowHeight*0.4,
       marginTop:-36,
       width: '100%', // 이미지를 화면에 꽉 차도록 넓이 설정
       height: windowHeight * 0.85, // 이미지가 화면의 70%를 차지하도록 설정
@@ -131,13 +142,13 @@ export const styles = StyleSheet.create({
 
     image3: {
       top:0,
-      marginTop:-65,
+      marginTop:-35,
       width: '100%', // 이미지를 화면에 꽉 차도록 넓이 설정
       height: windowHeight * 0.85, // 이미지가 화면의 70%를 차지하도록 설정
       resizeMode: 'contain', // 이미지가 화면에 꽉 차도록 조절
     },
       image4: {
-        top:-290,
+        top:-windowHeight*0.4,
         marginTop:-27,
         width: '100%', // 이미지를 화면에 꽉 차도록 넓이 설정
         height: windowHeight * 0.85, // 이미지가 화면의 70%를 차지하도록 설정

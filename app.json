@@ -2,7 +2,7 @@
   "expo": {
     "name": "언덕위의찬송",
     "slug": "test04",
-    "version": "18.0.0",
+    "version": "20.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",

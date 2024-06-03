@@ -51,7 +51,7 @@ const HelpModal = ({ visible, onClose }) => (
                 언덕위의 찬송 앱을  {'\n'}이용해 주셔서 감사합니다.
                 {'\n\n'}
               </Text>
-              언덕 위의 찬송 앱은 수록곡 281곡의 악보와 음원, 그리고 간단한 기능을 제공합니다.
+              언덕 위의 찬송 앱은 수록곡 281곡의 악보와 일부 음원, 그리고 간단한 기능을 제공합니다.
               {'\n\n'}
               ⦁ 찬송 검색 (장, 제목, 가사로 검색할 수 있습니다.) {'\n\n'} 
               ⦁ 메뉴-더욱 소중히 불러보고 싶은 찬송(즐겨찾기) {'\n\n'} 
@@ -368,17 +368,16 @@ useEffect(() => {
 
   return (
     <View style={styles.container}>
-      <View style={{ }}>
-      <View style={styles.menuButtonContainer}>
-  <TouchableOpacity onPress={openModal}>
-    <Text style={styles.menuButtonText}>☰</Text>
-  </TouchableOpacity>
-</View>
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 10 }}>
+      <View style={{ flexDirection: 'row',  }}>
+        <TouchableOpacity onPress={openModal}>
+          <Text style={styles.menuButtonText}>☰</Text>
+        </TouchableOpacity>
         <Text style={styles.title}>찬송 목록</Text>
-        <TouchableOpacity onPress={openModal2} style={styles.helpButtonContainer}>
-  <Image source={require('./images/Help.png')} style={styles.helpIcon} />
-  <Text style={styles.helpButtonText}>도움말</Text>
-</TouchableOpacity>
+      </View>
+      <TouchableOpacity onPress={openModal2}>
+        <Text style={styles.helpButtonText}>ⓘ 도움말</Text>
+      </TouchableOpacity>
     </View>
 
       {/* 모달 컴포넌트 추가 */}
@@ -461,7 +460,7 @@ useEffect(() => {
 };
 
 const { width, height } = Dimensions.get('window');
-setY = height * 0.39
+setY = height * 0.38
 
 const ImageDetailScreen = ({ route,navigation }) => {
   const { imageName } = route.params;
@@ -573,13 +572,13 @@ useLayoutEffect(() => {
     ),
     headerLeft: () => (
       <View style={styles.headerLeftContainer}>
-      {/* <TouchableOpacity onPress={() => navigation.goBack('Home', { direction: 'back' })}>
+      <TouchableOpacity onPress={() => navigation.goBack('Home', { direction: 'back' })}>
           <Image
             source={require('./images/previous.png')}
             style={styles.buttonImagePrevIndex}
           />
           <Text style={styles.buttonTextIndex}>목록</Text>
-        </TouchableOpacity> */}
+        </TouchableOpacity>
         <TouchableOpacity onPress={goToPrevious} style={{ flexDirection: 'row', alignItems: 'center',  position: 'absolute',   left: 100 ,}}>
            <Image
                 source={require('./images/previous.png')}
@@ -783,11 +782,11 @@ const renderScene = ({ route }) => {
           initialOffsetY={images.length > 1 ? setY: 1}
             >
           {images.map((image, index) => (
-            <Image key={index} source={image} style={images.length > 1 ? styles.image2 : styles.image} />
+            <Image key={index} source={image} style={images.length > 1 ? styles.image4 : styles.image3} />
           ))}
           </ReactNativeZoomableView>
           
-          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' ,top:images.length > 1 ? -height*0.83 : -4.8}}>
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' ,top:images.length > 1 ? -height*0.857 : -height*0.034}}>
          
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',marginLeft:25 ,bottom:5}}>
       <Text>{formatTime(playbackPosition)} / {formatTime(playbackDuration)}</Text>
@@ -1188,7 +1187,7 @@ useFocusEffect(
           ))}
           </ReactNativeZoomableView>
           
-          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' ,top:images.length > 1 ? -height*0.85 : -5}}>
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' ,top:images.length > 1 ? -height*0.857 : -height*0.034}}>
          
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',marginLeft:25 ,bottom:5}}>
       <Text>{formatTime(playbackPosition)} / {formatTime(playbackDuration)}</Text>
