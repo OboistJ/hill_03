@@ -281,4 +281,8 @@ export const soundSources = {
   '274.흐르는 강물처럼': require('./sounds/274.mp3'), 
   '275.감사해요': require('./sounds/275.mp3'), 
   '276.잊지못해': require('./sounds/276.mp3'), 
+  '277.영광의 길': require('./sounds/277.mp3'),
+  '278.산유화 산구는': require('./sounds/278.mp3'),
+  '279.북치는 작은 소년': require('./sounds/279.mp3'),
+  '280.그 낙엽송 그 큰 소나무': require('./sounds/280.mp3'),
 };

@@ -287,5 +287,12 @@ export const imageSources = {
   '274.흐르는 강물처럼': [require('./images/316.png')],
   '275.감사해요': [require('./images/317.png')],
   '276.잊지못해': [require('./images/318.png')],
+  '277.영광의 길': [require('./images/319.png')],
+  '278.산유화 산구는': [require('./images/320.png')],
+  '279.북치는 작은 소년': [require('./images/321.png')],
+  '280.그 낙엽송 그 큰 소나무': [require('./images/322.png'), require('./images/323.png')],
+
+
+  
 }
   
