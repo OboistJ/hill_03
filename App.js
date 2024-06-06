@@ -460,7 +460,7 @@ useEffect(() => {
 };
 
 const { width, height } = Dimensions.get('window');
-setY = height * 0.41
+setY = height * 0.37
 
 const ImageDetailScreen = ({ route,navigation }) => {
   const { imageName } = route.params;
@@ -778,7 +778,7 @@ const renderScene = ({ route }) => {
           zoomStep={4} // 줌 단계
           initialZoom={images.length > 1 ? 1: 1} // 초기 줌 배율
           bindToBorders={true}
-          contentHeight={images.length > 1 ? height*2.45 : undefined}
+          contentHeight={images.length > 1 ? height*2.2 : undefined}
           initialOffsetY={images.length > 1 ? setY: 1}
             >
           {images.map((image, index) => (
@@ -786,7 +786,7 @@ const renderScene = ({ route }) => {
           ))}
           </ReactNativeZoomableView>
           
-          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' ,top:images.length > 1 ? -height*0.853 : -height*0.039}}>
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' ,top:images.length > 1 ? -height*0.685 : -height*0.013}}>
          
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',marginLeft:25 ,bottom:5}}>
       <Text>{formatTime(playbackPosition)} / {formatTime(playbackDuration)}</Text>
@@ -1177,7 +1177,7 @@ useFocusEffect(
           zoomStep={4} // 줌 단계
           initialZoom={images.length > 1 ? 1: 1} // 초기 줌 배율
           bindToBorders={true}
-          contentHeight={images.length > 1 ? height*2.45 : undefined}
+          contentHeight={images.length > 1 ? height*2.2 : undefined}
           initialOffsetY={images.length > 1 ? setY: 1}
               
               
@@ -1187,7 +1187,7 @@ useFocusEffect(
           ))}
           </ReactNativeZoomableView>
           
-          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' ,top:images.length > 1 ? -height*0.857 : -height*0.065}}>
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' ,top:images.length > 1 ? -height*0.685 : -height*0.013}}>
          
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',marginLeft:25 ,bottom:5}}>
       <Text>{formatTime(playbackPosition)} / {formatTime(playbackDuration)}</Text>
