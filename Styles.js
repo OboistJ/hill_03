@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
     menuButtonText: {
       
       top:0,
-      fontSize: 22,
+      fontSize: 21,
       fontWeight: 'bold',
       color: 'black',
       marginBottom: 10,
@@ -136,20 +136,20 @@ export const styles = StyleSheet.create({
       top:-windowHeight*0.4,
       marginTop:-36,
       width: '100%', // 이미지를 화면에 꽉 차도록 넓이 설정
-      height: windowHeight * 0.75, // 이미지가 화면의 70%를 차지하도록 설정
+      height: windowHeight * 0.85, // 이미지가 화면의 70%를 차지하도록 설정
       resizeMode: 'contain', // 이미지가 화면에 꽉 차도록 조절
     },
 
     image3: {
       top:0,
-      marginTop:-13,
+      marginTop:-20,
       width: '100%', // 이미지를 화면에 꽉 차도록 넓이 설정
       height: windowHeight * 0.8, // 이미지가 화면의 70%를 차지하도록 설정
       resizeMode: 'contain', // 이미지가 화면에 꽉 차도록 조절
     },
       image4: {
-        top:-windowHeight*0.31,
-        marginTop:-50,
+        top:-windowHeight*0.4,
+        marginTop:-27,
         width: '100%', // 이미지를 화면에 꽉 차도록 넓이 설정
         height: windowHeight * 0.8, // 이미지가 화면의 70%를 차지하도록 설정
         resizeMode: 'contain', // 이미지가 화면에 꽉 차도록 조절
