@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     title: {
       
       top:0,
-      left:15,
+      left:10,
       fontSize: 21,
       fontWeight: 'bold',
       marginBottom: 10,
@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
     menuButtonText: {
       
       top:0,
-      fontSize: 21,
+      fontSize: 31,
       fontWeight: 'bold',
       color: 'black',
       marginBottom: 10,
@@ -107,11 +107,11 @@ export const styles = StyleSheet.create({
       height: 50,
     },
     itemName: {
-      top: 0, // 이미지의 중앙에 위치하도록 설정
+      top: 12, // 이미지의 중앙에 위치하도록 설정
       fontSize: 16,
     },
     itemName2: {
-      top: 8, // 이미지의 중앙에 위치하도록 설정
+      top: 15.5, // 이미지의 중앙에 위치하도록 설정
       fontSize: 16,
     },
     separator: {
@@ -142,16 +142,16 @@ export const styles = StyleSheet.create({
 
     image3: {
       top:0,
-      marginTop:-20,
+      marginTop:0,
       width: '100%', // 이미지를 화면에 꽉 차도록 넓이 설정
-      height: windowHeight * 0.8, // 이미지가 화면의 70%를 차지하도록 설정
+      height: windowHeight * 0.7, // 이미지가 화면의 70%를 차지하도록 설정
       resizeMode: 'contain', // 이미지가 화면에 꽉 차도록 조절
     },
       image4: {
-        top:-windowHeight*0.38,
-        marginTop:-27,
+        top:0,
+        marginTop:0,
         width: '100%', // 이미지를 화면에 꽉 차도록 넓이 설정
-        height: windowHeight * 0.8, // 이미지가 화면의 70%를 차지하도록 설정
+        height: windowHeight * 0.7, // 이미지가 화면의 70%를 차지하도록 설정
         resizeMode: 'contain', // 이미지가 화면에 꽉 차도록 조절
     },
     
@@ -177,7 +177,7 @@ export const styles = StyleSheet.create({
     // 모달 내부의 메뉴 항목의 스타일을 설정합니다.
     modalItem: {
       fontSize: 18,
-      marginTop:3,
+      marginTop:4,
       marginBottom: 15,
       marginLeft: 3,
       fontWeight: 'bold', // 폰트를 볼드체로 설정
@@ -243,7 +243,7 @@ export const styles = StyleSheet.create({
       width: 18, // 이미지 너비
       height: 18, // 이미지 높이
       left:5, // 필요에 따라 추가 스타일링
-      top:25.5
+      top:20.2
     },
     buttonImagePrevIndex2: {
       // 이미지 스타일링
@@ -346,6 +346,7 @@ export const styles = StyleSheet.create({
       marginTop: 10,
     },
     button: {
+      top:-30,
       marginHorizontal: 10,
       backgroundColor: 'lightgrey',
       padding: 3,
@@ -353,7 +354,7 @@ export const styles = StyleSheet.create({
       marginBottom: 10
     },
     buttonText: {
-      top:-2.5,
+      top:-1,
       fontSize: 20,
     },
     // 기존 스타일 ...
@@ -367,7 +368,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center', // 수평 방향으로 중앙 정렬
     justifyContent: 'center', // 수직 방향으로 중앙 정렬
     paddingVertical: 7, // 버튼의 세로 패딩
-    paddingHorizontal: 4, // 버튼의 가로 패딩
+    paddingHorizontal: 3, // 버튼의 가로 패딩
     backgroundColor: 'lightgray', // 배경 색상
     borderRadius: 100, // 배경을 동그랗게 만들기 위한 값. 조정 가능
     marginBottom: 5, // 버튼 간의 간격

@@ -54,7 +54,7 @@ const HelpModal = ({ visible, onClose }) => (
                 언덕위의 찬송 앱을  {'\n'}이용해 주셔서 감사합니다.
                 {'\n\n'}
               </Text>
-              언덕 위의 찬송 앱은 수록곡 281곡의 악보와 일부 음원, 그리고 간단한 기능을 제공합니다.
+              언덕 위의 찬송 앱은 수록곡 281곡의 악보와 음원, 그리고 간단한 기능을 제공합니다.
               {'\n\n'}
               ⦁ 찬송 검색 (장, 제목, 가사로 검색할 수 있습니다.) {'\n\n'} 
               ⦁ 메뉴-더욱 소중히 불러보고 싶은 찬송(즐겨찾기) {'\n\n'} 
@@ -568,13 +568,13 @@ useLayoutEffect(() => {
     ),
     headerLeft: () => (
       <View style={styles.headerLeftContainer}>
-      {/* <TouchableOpacity onPress={() => navigation.goBack('Home', { direction: 'back' })}>
+      <TouchableOpacity onPress={() => navigation.goBack('Home', { direction: 'back' })}>
           <Image
             source={require('./images/previous.png')}
             style={styles.buttonImagePrevIndex}
           />
           <Text style={styles.buttonTextIndex}>목록</Text>
-        </TouchableOpacity> */}
+        </TouchableOpacity>
         <TouchableOpacity onPress={goToPrevious} style={{ flexDirection: 'row', alignItems: 'center',  position: 'absolute',   left: 100 ,}}>
            <Image
                 source={require('./images/previous.png')}
@@ -752,82 +752,65 @@ const renderScene = ({ route }) => {
     case 'images':
       return (
 
-        <View >
+        
+        
+        
+        <View style={{ flex: 1 }}>
         <ScrollView
-          contentContainerStyle={{ flexGrow: 1 }}
-          //maximumZoomScale={2}
-          //minimumZoomScale={1}
+          
+          maximumZoomScale={3}
+          minimumZoomScale={1}
           horizontal={false}
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
-          scrollEnabled={false}
+          scrollEnabled={true}
         >
-        
-       <View style={{ flexGrow: 1}}>
-    
-        
-           
-          <ReactNativeZoomableView   style={{ flexGrow: 1}}// ZoomableView 추가
-          
-          maxZoom={images.length > 1 ? 3 : 3} // 최대 줌 배율
-          minZoom={images.length > 1 ? 1 : 1}
-          zoomStep={4} // 줌 단계
-          initialZoom={images.length > 1 ? 1: 1} // 초기 줌 배율
-          bindToBorders={true}
-          contentHeight={images.length > 1 ? height*2.3 : undefined}
-          initialOffsetY={images.length > 1 ? setY: 1}
-            >
           {images.map((image, index) => (
-            <Image key={index} source={image} style={images.length > 1 ? styles.image4 : styles.image3} />
+            <Image key={index} source={image} style={images.length > 1 ? styles.image4 : styles.image3 } />
           ))}
-          </ReactNativeZoomableView>
-          
-          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' ,top:images.length > 1 ? -height*0.785 : -height*0.034}}>
-         
-      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',marginLeft:25 ,bottom:5}}>
-      <Text>{formatTime(playbackPosition)} / {formatTime(playbackDuration)}</Text>
+        </ScrollView>
       
-    <Slider
-      style={{ width: 230, height: 40 }}
-      minimumValue={0}
-      maximumValue={1}
-      value={playbackPosition / playbackDuration}
-      onSlidingComplete={handleSliderComplete} // 사용자가 드래그를 완료했을 때 호출
-      minimumTrackTintColor="#50594f"
-      maximumTrackTintColor="#CCCCCC"
-      thumbTintColor="#88ab85"
-    />
-            
-      {/* 다시 재생 토글 버튼 */}
-    </View>
-    <View style={{ flexDirection: 'row', justifyContent: 'center',left: 8, bottom:10}}>
-    <TouchableOpacity onPress={handleRestart} style={{ marginRight: 45 ,marginLeft:25}}>
-                <Image source={require('./images/backward.png')} style={{ width: 25, height: 25}} />
-              </TouchableOpacity>
-      {/* 재생/일시정지 토글 버튼 */}
-                <TouchableOpacity onPress={handleTogglePlayPause} style={{ marginRight: 45,marginLeft:45}}>
-                <Image
-                  source={isPlaying ? require('./images/pause.png') : require('./images/play.png')}
-                  style={{ width: 25, height: 25}}
-                />
-              </TouchableOpacity>
-    
-      {/* 반복 재생 토글 버튼 */}
-      <TouchableOpacity onPress={toggleLooping} style={{ marginLeft:45,marginRight: 40 }}>
-      <Image
-        source={isLooping ? require('./images/looping.png') : require('./images/nonloop.png')} // 이미지 경로는 실제 프로젝트 구조에 맞게 조정
-        style={{ width: 25, height: 25 }}// 이미지 크기 조정
-      /> 
-       </TouchableOpacity>
-       
-    </View>
-    
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: -30 }}>
+          {/* Playback 시간 표시 */}
+          <Text style={{ marginBottom: 0, marginTop:-20, top:images.length > 1 ? -50 : -15 }}>{formatTime(playbackPosition)} / {formatTime(playbackDuration)}</Text>
+      
+          {/* 슬라이더 */}
+          <Slider
+            style={{ width: 230, height: 40 , top: images.length > 1 ? -55 :-20}}
+            minimumValue={0}
+            maximumValue={1}
+            value={playbackPosition / playbackDuration}
+            onSlidingComplete={handleSliderComplete}
+            minimumTrackTintColor="#50594f"
+            maximumTrackTintColor="#CCCCCC"
+            thumbTintColor="#88ab85"
+          />
+      
+          {/* 재생 관련 버튼들 */}
+          <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 10 , top:images.length > 1 ? -70 : -35}}>
+            <TouchableOpacity onPress={handleRestart} style={{ marginRight: 40 }}>
+              <Image source={require('./images/backward.png')} style={{ width: 25, height: 25 }} />
+            </TouchableOpacity>
+      
+            <TouchableOpacity onPress={handleTogglePlayPause} style={{ marginRight: 40, marginLeft:40 }}>
+              <Image
+                source={isPlaying ? require('./images/pause.png') : require('./images/play.png')}
+                style={{ width: 25, height: 25 }}
+              />
+            </TouchableOpacity>
+      
+            <TouchableOpacity onPress={toggleLooping}>
+              <Image
+                source={isLooping ? require('./images/looping.png') : require('./images/nonloop.png')}
+                style={{ width: 25, height: 25 , marginLeft:40}}
+              />
+            </TouchableOpacity>
           </View>
-          
-         
-          </View>
-          </ScrollView>
+        </View>
       </View>
+      
+          
+      
 
       );
     case 'lyrics':
@@ -1004,13 +987,13 @@ useFocusEffect(
         ),
         headerLeft: () => (
           <View style={styles.headerLeftContainer}>
-          {/* <TouchableOpacity onPress={() => navigation.popToTop()}>
+          <TouchableOpacity onPress={() => navigation.popToTop()}>
           <Image
              source={require('./images/previous.png')}
             style={styles.buttonImagePrevIndex}
          />
           <Text style={styles.buttonTextIndex}>목록</Text>
-          </TouchableOpacity> */}
+          </TouchableOpacity>
 
             <TouchableOpacity onPress={goToPrevious} style={{ flexDirection: 'row', alignItems: 'center',  position: 'absolute',   left: 100 ,}}>
                <Image
@@ -1153,79 +1136,59 @@ useFocusEffect(
         case 'images':
           return (
 
+            <View style={{ flex: 1 }}>
             <ScrollView
-            contentContainerStyle={{ flexGrow: 1 }}
-            //maximumZoomScale={2}
-            //minimumZoomScale={1}
-            horizontal={false}
-            showsHorizontalScrollIndicator={false}
-            showsVerticalScrollIndicator={false}
-            scrollEnabled={false}
-          >
-          <View style={{ flex: 1}}>
-      
-          
-             
-          <ReactNativeZoomableView   style={{ flexGrow: 1}}// ZoomableView 추가
-          
-          maxZoom={images.length > 1 ? 3 : 3} // 최대 줌 배율
-          minZoom={images.length > 1 ? 1 : 1}
-          zoomStep={4} // 줌 단계
-          initialZoom={images.length > 1 ? 1: 1} // 초기 줌 배율
-          bindToBorders={true}
-          contentHeight={images.length > 1 ? height*2.3 : undefined}
-          initialOffsetY={images.length > 1 ? setY: 1}
               
-              
+              maximumZoomScale={3}
+              minimumZoomScale={1}
+              horizontal={false}
+              showsHorizontalScrollIndicator={false}
+              showsVerticalScrollIndicator={false}
+              scrollEnabled={true}
             >
           {images.map((image, index) => (
             <Image key={index} source={image} style={images.length > 1 ? styles.image4 : styles.image3} />
           ))}
-          </ReactNativeZoomableView>
+          </ScrollView>
           
-          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' ,top:images.length > 1 ? -height*0.785 : -height*0.034}}>
-         
-      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center',marginLeft:25 ,bottom:5}}>
-      <Text>{formatTime(playbackPosition)} / {formatTime(playbackDuration)}</Text>
-        <Slider
-              style={{ width: 230, height: 40, }}
-              minimumValue={0}
-              maximumValue={1}
-              value={playbackPosition / playbackDuration}
-              onValueChange={handleSliderValueChange}
-              minimumTrackTintColor="#50594f"
-              maximumTrackTintColor="#CCCCCC" 
-              thumbTintColor="#88ab85" 
-            />
-         {/* 다시 재생 토글 버튼 */}
-    </View>
-    <View style={{ flexDirection: 'row', justifyContent: 'center',left: 8, bottom:10}}>
-    <TouchableOpacity onPress={handleRestart} style={{ marginRight: 45 ,marginLeft:25}}>
-                <Image source={require('./images/backward.png')} style={{ width: 25, height: 25}} />
-              </TouchableOpacity>
-      {/* 재생/일시정지 토글 버튼 */}
-      <TouchableOpacity onPress={handleTogglePlayPause} style={{ marginRight: 45,marginLeft:45}}>
-                <Image
-                  source={isPlaying ? require('./images/pause.png') : require('./images/play.png')}
-                  style={{ width: 25, height: 25}}
-                />
-              </TouchableOpacity>
-    
-      {/* 반복 재생 토글 버튼 */}
-      <TouchableOpacity onPress={toggleLooping} style={{ marginLeft:45,marginRight: 40 }}>
-      <Image
-        source={isLooping ? require('./images/looping.png') : require('./images/nonloop.png')} // 이미지 경로는 실제 프로젝트 구조에 맞게 조정
-        style={{ width: 25, height: 25 }}// 이미지 크기 조정
-      /> 
-       </TouchableOpacity>
-         
-      </View>
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: -30 }}>
+          {/* Playback 시간 표시 */}
+          <Text style={{ marginBottom: 0, marginTop:-20, top:images.length > 1 ? -50 : -15 }}>{formatTime(playbackPosition)} / {formatTime(playbackDuration)}</Text>
       
-            </View>
-            
-           
-            </View>
-            </ScrollView>
+          {/* 슬라이더 */}
+          <Slider
+            style={{ width: 230, height: 40 , top: images.length > 1 ? -55 :-20}}
+            minimumValue={0}
+            maximumValue={1}
+            value={playbackPosition / playbackDuration}
+            onSlidingComplete={handleSliderValueChange}
+            minimumTrackTintColor="#50594f"
+            maximumTrackTintColor="#CCCCCC"
+            thumbTintColor="#88ab85"
+          />
+      
+          {/* 재생 관련 버튼들 */}
+          <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 10 , top:images.length > 1 ? -70 : -35}}>
+            <TouchableOpacity onPress={handleRestart} style={{ marginRight: 40 }}>
+              <Image source={require('./images/backward.png')} style={{ width: 25, height: 25 }} />
+            </TouchableOpacity>
+      
+            <TouchableOpacity onPress={handleTogglePlayPause} style={{ marginRight: 40, marginLeft:40 }}>
+              <Image
+                source={isPlaying ? require('./images/pause.png') : require('./images/play.png')}
+                style={{ width: 25, height: 25 }}
+              />
+            </TouchableOpacity>
+      
+            <TouchableOpacity onPress={toggleLooping}>
+              <Image
+                source={isLooping ? require('./images/looping.png') : require('./images/nonloop.png')}
+                style={{ width: 25, height: 25 , marginLeft:40}}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
           );
         case 'lyrics':
           return (
@@ -1484,7 +1447,7 @@ const HomeStack = () => {
             fontFamily:'HakgyoansimBareonbatangB',
 
           },
-          headerLeft: () => null, // 뒤로 가기 버튼을 숨깁니다.
+         // headerLeft: () => null, // 뒤로 가기 버튼을 숨깁니다.
         }}
       />
       <Stack.Screen
@@ -1504,4 +1467,3 @@ const HomeStack = () => {
   );
 };
 export default App;
-
