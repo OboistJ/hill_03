@@ -1,9 +1,10 @@
 
+
 import React, { useState, useEffect,useRef,useLayoutEffect} from 'react';
 import { NavigationContainer,useFocusEffect,useNavigation} from '@react-navigation/native';
 import { createStackNavigator} from '@react-navigation/stack';
 import { View, Text, FlatList, TouchableOpacity, TextInput,Image, ScrollView, Modal, TouchableWithoutFeedback,Animated,Dimensions,Linking,Pressable,Alert,Clipboard} from 'react-native'; // Image 컴포넌트 추가
-import Swipeout from 'react-native-swipeout'; // react-native-swipeout 라이브러리 추가
+//import Swipeout from 'react-native-swipeout'; // react-native-swipeout 라이브러리 추가
 import AsyncStorage from '@react-native-async-storage/async-storage'; // AsyncStorage 추가
 import { Audio } from 'expo-av'; // Expo Audio API 불러오기
 import { StatusBar } from 'expo-status-bar';
@@ -16,6 +17,8 @@ import Slider from '@react-native-community/slider';
 import * as Font from 'expo-font';
 import  {  ReactNativeZoomableView  }  from  '@openspacelabs/react-native-zoomable-view' ;
 import { TabView,TabBar,} from 'react-native-tab-view';
+import { Swipeable } from 'react-native-gesture-handler'; // Swipeable 추가
+
 
 async function loadFonts() {
   await Font.loadAsync({
@@ -329,30 +332,23 @@ useEffect(() => {
     // 임시 즐겨찾기 상태를 관리하기 위한 상태
     const [isFavoriteTemp, setIsFavoriteTemp] = useState(item.favorite);
   
+    const renderLeftActions = () => (
+      <View style={{ backgroundColor: 'white', justifyContent: 'center', alignItems: 'center', width: 70 }}>
+        <Pressable
+          onPressIn={() => setIsFavoriteTemp(!isFavoriteTemp)}
+          onPressOut={() => toggleFavorite(item.id)}
+        >
+          <Image
+            source={isFavoriteTemp ? require('./images/BookMark_en.png') : require('./images/BookMark_dis.png')}
+            style={{ width: 70, height: 70 }}
+            resizeMode="contain"
+          />
+        </Pressable>
+      </View>
+    );
+
     return (
-      <Swipeout
-        key={item.id}
-        left={[
-          {
-            text: (
-              <Pressable
-                onPressIn={() => setIsFavoriteTemp(!isFavoriteTemp)} // 손가락을 올렸을 때 임시 상태 변경
-                onPressOut={() => toggleFavorite(item.id)} // 손가락을 떼었을 때 최종 상태 변경 및 업데이트
-              >
-                <Image
-                  source={isFavoriteTemp ? require('./images/BookMark_en.png') : require('./images/BookMark_dis.png')}
-                  style={{ width: 70, height: 70 }}
-                  resizeMode="contain"
-                />
-              </Pressable>
-            ),
-            backgroundColor: 'white',
-          },
-        ]}
-        close={swipeoutClose}
-        onOpen={() => toggleSwipeout(item.id)}
-        onClose={handleSwipeClose}
-      >
+      <Swipeable renderLeftActions={renderLeftActions}>
       <TouchableOpacity onPress={() => navigation.navigate('ImageDetailScreen', { imageName: item.name })}>
           <View style={styles.itemContainer}>
             <Text style={[styles.itemName, { fontFamily: item.favorite ? 'NotoSansKR-Bold' : 'NotoSansKR-Regular', color: item.favorite ? 'black' : 'black' }]}>
@@ -360,7 +356,7 @@ useEffect(() => {
             </Text>
           </View>
         </TouchableOpacity>
-      </Swipeout>
+      </Swipeable>
     );
   });
   
@@ -1325,41 +1321,37 @@ const NewSongScreen = ({ route }) => {
   };
 
 
+  // Swipeable을 사용한 항목 렌더링 함수
+  const renderSwipeableItem = ({ item }) => {
+    const renderLeftActions2 = () => (
+      <View style={{ backgroundColor: 'white', justifyContent: 'center', alignItems: 'center', width: 70 }}>
+        <TouchableOpacity onPress={() => removeFavorite(item.id)}>
+          <Image
+            source={require('./images/BookMark_disable.png')}
+            style={{ width: 25, height: 25, alignSelf: 'center' }}
+          />
+        </TouchableOpacity>
+      </View>
+    );
+
+    return (
+      <Swipeable renderLeftActions={renderLeftActions2}>
+        <TouchableOpacity onPress={() => navigateToImageDetail(item.name)}>
+          <View style={styles.itemContainer}>
+            <Text style={styles.itemName2}>{item.name}</Text>
+          </View>
+        </TouchableOpacity>
+      </Swipeable>
+    );
+  };
+
   return (
     <View style={styles.container}>
-<FlatList
-  data={filteredSongs}
-  renderItem={({ item }) => (
-    <Swipeout
-      left={[
-        {
-          component: (
-            <TouchableOpacity
-              onPress={() => removeFavorite(item.id)}
-              style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white' }}
-            >
-              <Image
-                source={require('./images/BookMark_disable.png')} // Specify the path to your image
-                style={{ width: 25, height: 25, alignSelf: 'center' }} // Adjust width and height as needed, align image to center
-              />
-            </TouchableOpacity>
-          ),
-          onPress: () => removeFavorite(item.id),
-        },
-      ]}
-      autoClose={true}
-    >
-      <TouchableOpacity onPress={() => navigateToImageDetail(item.name)}>
-        <View style={styles.itemContainer}>
-          <Text style={[styles.itemName2, { }]}>
-            {item.name}
-          </Text>
-        </View>
-      </TouchableOpacity>
-    </Swipeout>
-  )}
-        keyExtractor={(item) => item.id.toString()}        
-        contentContainerStyle={{ paddingVertical: 5,}}
+      <FlatList
+        data={filteredSongs}
+        renderItem={renderSwipeableItem}
+        keyExtractor={(item) => item.id.toString()}
+        contentContainerStyle={{ paddingVertical: 5 }}
       />
     </View>
   );
@@ -1512,3 +1504,4 @@ const HomeStack = () => {
   );
 };
 export default App;
+
